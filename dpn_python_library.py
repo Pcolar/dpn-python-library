@@ -27,7 +27,8 @@ def snapshot_file():
                 if json_records['Records'][0]['s3']['configurationId'] == u'DCV dump Notification':
                     filename = json_records['Records'][0]['s3']['object']['key']
                 else:
-                    log_message("SQS entry was not a DCV Filename notification: " + json_records['Records'][0]['s3']['configurationId'])
+                    log_message("SQS entry was not a DCV Filename notification: " \
+                        + json_records['Records'][0]['s3']['configurationId'])
                     continue
             if filename:
                 # Let the queue know that the message is processed
@@ -39,3 +40,5 @@ def snapshot_file():
                 return
 
 print snapshot_file()
+
+

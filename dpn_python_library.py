@@ -66,7 +66,7 @@ def  create_csv(json_file):
         values = [char.encode(encoding='ascii', errors='replace') for char in values]
         csvwriter.writerow(values)
         rec_num += 1
-    log_message(len(records))
+    log_message("Rows exported: " + str(len(records)))
     input_file.close()
     output_file.close()
 
@@ -77,9 +77,4 @@ def download_s3_file(json_file, s3_bucket='dpn-dcv'):
         s3 = boto3.resource('s3')
         # download the object
         s3.Object(s3_bucket, json_file).download_file(json_file)
-
-json_file = snapshot_file()
-if json_file:
-    download_s3_file(json_file)
-    create_csv(json_file)
 

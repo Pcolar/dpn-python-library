@@ -81,3 +81,12 @@ def download_s3_file(json_file, s3_bucket='dpn-dcv'):
         # download the object
         s3.Object(s3_bucket, json_file).download_file(json_file)
 
+def delete_s3_file(file_object, s3_bucket='dpn-dcv'):
+    """  Delete a file object from S3 """
+    if file_object:
+	# connect to the S3 service
+        s3 = boto3.resource('s3')
+        # delete the object
+        client = boto3.client('s3')
+        client.delete_object(Bucket=s3_bucket, Key=file_object)
+        log_message("Object Deleted: " + file_object)

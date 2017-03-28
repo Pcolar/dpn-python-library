@@ -43,6 +43,9 @@ def snapshot_file():
             else:
                 # leave the entry in the queue
                 return
+        # no message retrieved - most likely a timeout
+        log_message("No messages in queue " + queue_name) 
+        return
 
 def  create_csv(json_file):
     """create a csv file from the json data"""
@@ -62,15 +65,28 @@ def  create_csv(json_file):
             csvwriter.writerow(record.keys())
             first_row = False
         values = record.values()
+        # csvwriter is ascii only - change encoding
         values = [char.encode(encoding='ascii', errors='replace') for char in values]
         csvwriter.writerow(values)
         rec_num += 1
-    log_message(len(records))
+    log_message("Rows exported: " + str(len(records)))
     input_file.close()
     output_file.close()
 
+def download_s3_file(json_file, s3_bucket='dpn-dcv'):
+    """ dowload an object from a s3 bucket """
+    if json_file:
+        # connect to the S3 service
+        s3 = boto3.resource('s3')
+        # download the object
+        s3.Object(s3_bucket, json_file).download_file(json_file)
 
-json_file = snapshot_file()
-if json_file:
-    create_csv(json_file)
-
+def delete_s3_file(file_object, s3_bucket='dpn-dcv'):
+    """  Delete a file object from S3 """
+    if file_object:
+	# connect to the S3 service
+        s3 = boto3.resource('s3')
+        # delete the object
+        client = boto3.client('s3')
+        client.delete_object(Bucket=s3_bucket, Key=file_object)
+        log_message("Object Deleted: " + file_object)

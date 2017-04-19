@@ -44,7 +44,7 @@ def snapshot_file():
                 # leave the entry in the queue
                 return
         # no message retrieved - most likely a timeout
-        log_message("No messages in queue " + queue_name) 
+        log_message("No messages in queue " + queue_name)
         return
 
 def  create_csv(json_file):

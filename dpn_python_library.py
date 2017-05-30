@@ -3,6 +3,7 @@ import json
 import csv
 import datetime
 import boto3
+import requests
 
 # constants
 #True = 1
@@ -14,7 +15,7 @@ def log_message(message):
     """print out  in log message format"""
     print "%s:  %s" % (datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S"), message)
 
-def snapshot_file():
+def dcv_snapshot_file():
     """Read the queue and retrieve the snapshot filename"""
     # Get the service resource
     sqs = boto3.resource('sqs')
@@ -44,33 +45,38 @@ def snapshot_file():
                 # leave the entry in the queue
                 return
         # no message retrieved - most likely a timeout
-        log_message("No messages in queue " + queue_name) 
+        log_message("No messages in queue " + queue_name)
         return
 
 def  create_csv(json_file):
     """create a csv file from the json data"""
     output_filename = json_file[:json_file.find('json')] + "csv"
-    log_message(output_filename)
+    log_message("File created: " + output_filename)
     output_file = open(output_filename, 'w')
     csvwriter = csv.writer(output_file)
     first_row = True
-    with open(json_file) as input_file:
-        json_data = json.load(input_file)
-        for keys in json_data.keys():
-            records = json_data[keys]
-    rec_num = 0
-    while rec_num < len(records):
-        record = records[rec_num]
-        if first_row:
-            csvwriter.writerow(record.keys())
-            first_row = False
-        values = record.values()
+    try: 
+      with open(json_file) as input_file:
+          json_data = json.load(input_file)
+          for keys in json_data.keys():
+              records = json_data[keys]
+      rec_num = 0
+      while rec_num < len(records):
+          record = records[rec_num]
+          if first_row:
+              csvwriter.writerow(record.keys())
+              first_row = False
+          values = record.values()
         # csvwriter is ascii only - change encoding
-        values = [char.encode(encoding='ascii', errors='replace') for char in values]
-        csvwriter.writerow(values)
-        rec_num += 1
-    log_message("Rows exported: " + str(len(records)))
-    input_file.close()
+          values = [char.encode(encoding='ascii', errors='replace') for char in values]
+          csvwriter.writerow(values)
+          rec_num += 1
+    except:
+      log_message("File " + json_file + " not found")     
+    else:
+      log_message("Rows exported: " + str(len(records)))
+      input_file.close()
+
     output_file.close()
 
 def download_s3_file(json_file, s3_bucket='dpn-dcv'):
@@ -79,14 +85,25 @@ def download_s3_file(json_file, s3_bucket='dpn-dcv'):
         # connect to the S3 service
         s3 = boto3.resource('s3')
         # download the object
-        s3.Object(s3_bucket, json_file).download_file(json_file)
+        try:
+          s3.Object(s3_bucket, json_file).download_file(json_file)
+        except:
+          log_message("S3 object not found " + json_file)
 
 def delete_s3_file(file_object, s3_bucket='dpn-dcv'):
     """  Delete a file object from S3 """
     if file_object:
-	# connect to the S3 service
-        s3 = boto3.resource('s3')
+	# connect to the S3 service and 
         # delete the object
         client = boto3.client('s3')
         client.delete_object(Bucket=s3_bucket, Key=file_object)
         log_message("Object Deleted: " + file_object)
+
+def get_uuidv4():
+    """ Call service for UUID v4  """
+    response = requests.get('https://www.uuidgenerator.net/api/version4')
+    if response.status_code is 200:
+      uuid=r.text
+      log_message("UUID: " + uuid)
+    return uuid 
+

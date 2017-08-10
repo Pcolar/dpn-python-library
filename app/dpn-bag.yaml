@@ -1,0 +1,15 @@
+---
+# Template for DPN Bag records
+# Documented at https://app.swaggerhub.com/apis/Pcolar/dpn-peer-api/0.0.1
+# <field explanation>
+#
+uuid: <UUIDv4 locally generated>
+first_version_uuid: < same as above uuid for version=1 >
+local_id: < a UNIQUE local text string>
+size: <size of the object in bytes>
+version: < 1 >
+bag_type: < One of 'D'->Data, 'I'->Interpretive, 'R'->Rights >
+admin_node: dpn
+ingest_node: dpn
+member: < UUIDv4 of the member who "owns" this bag >
+replicating_nodes: < namespaces of this bag's replicating nodes. >

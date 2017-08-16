@@ -1,0 +1,16 @@
+---
+# Template for DPN Bag records
+# Documented at https://app.swaggerhub.com/apis/Pcolar/dpn-peer-api/0.0.1
+# <field explanation>
+#
+uuid: "ca80a986-ee3f-4503-bd28-0bbc176ced87"
+first_version_uuid: "ca80a986-ee3f-4503-bd28-0bbc176ced87"
+local_id: "DPN test bag ca80a986-ee3f-4503-bd28-0bbc176ced87 for P2P submission"
+size: 32767
+version: 1
+bag_type: "D"
+admin_node: "dpn"
+ingest_node: "dpn"
+member: "7277cbab-d539-4a81-ac1e-70cefc28fb2e"
+replicating_nodes: ""
+

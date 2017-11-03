@@ -6,6 +6,7 @@ __license__ = "BSD Version 3 License"
 import json
 import csv
 import datetime
+import time
 import boto3
 from botocore.exceptions import ClientError
 import requests
@@ -16,6 +17,9 @@ import requests
 
 # Note: create the credentials file in .aws before using
 #
+def dpn_time():
+    return time.strftime('%Y-%m-%dT%H:%M:%S.000Z')
+
 def log_message(message):
     """print out  in log message format"""
     print "%s:  %s" % (datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S"), message)

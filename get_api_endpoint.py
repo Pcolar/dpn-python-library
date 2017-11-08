@@ -2,11 +2,8 @@
 """ Execution shell for DPN API get calls """
 
 from app.dpn_python_library import *
-import json
 import requests
-import datetime
 import sys
-import os
 
 def get_dpn_api(endpoint_string):
     """ Call service for dpn API  """

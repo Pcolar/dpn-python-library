@@ -8,4 +8,4 @@ json_file = dcv_snapshot_file()
 if json_file:
     download_s3_file(json_file)
     create_csv(json_file)
-#    delete_s3_file(json_file)
+    delete_s3_file(json_file)

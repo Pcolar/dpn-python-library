@@ -4,10 +4,7 @@
 from dpn_python_library import *
 import json
 import requests
-import datetime
 import sys
-import os
-import yaml
 
 dpn = {'url': 'http://ec2-54-197-14-13.compute-1.amazonaws.com'}
 dpn_headers={'Content-Type': 'application/json','Accept': 'application/json', 'Authorization': 'Token token=dpn_token'}
@@ -17,7 +14,7 @@ input_record=sys.stdin.read().replace('\n', '')
 # log_message("length of JSON input " + str(len(input_record)))
 if len(input_record) is 0:
     log_message("Record required as input")
-    exit(1) 
+    exit(1)
 sync_record=json.loads(input_record)
 dpn_querystring="/api-v2/bag/"+sync_record['uuid']
 response = requests.get(dpn['url']+dpn_querystring, headers=dpn_headers)

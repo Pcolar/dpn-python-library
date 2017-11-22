@@ -4,7 +4,6 @@ from app.dpn_python_library import *
 import requests
 import datetime
 import sys
-import os
 
 def reset_headers(headers):
     headers['snapshot']=""

@@ -2,7 +2,7 @@
 <template encoding-version="1.1">
   <description></description>
   <groupId>8216b3eb-015f-1000-5d8a-47c44c296414</groupId>
-  <name>DPN-Query-Bags-201712</name>
+  <name>DPN-Query-Load</name>
   <snippet>
     <processGroups>
       <id>02247fc8-6d6e-386b-0000-000000000000</id>
@@ -11,10 +11,7 @@
         <x>0.0</x>
         <y>0.0</y>
       </position>
-      <comments>Start with a query string in SQS: DPN-NiFi-Flow
-Set &amp;page_size=1 to trap a single record in the response.
-
-Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
+      <comments></comments>
       <contents>
         <connections>
           <id>9f3e188b-87a2-3b1e-0000-000000000000</id>
@@ -412,6 +409,12 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
             <concurrentlySchedulableTaskCount>0</concurrentlySchedulableTaskCount>
             <descriptors>
               <entry>
+                <key>next</key>
+                <value>
+                  <name>next</name>
+                </value>
+              </entry>
+              <entry>
                 <key>Destination</key>
                 <value>
                   <name>Destination</name>
@@ -424,21 +427,15 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                 </value>
               </entry>
               <entry>
-                <key>Path Not Found Behavior</key>
-                <value>
-                  <name>Path Not Found Behavior</name>
-                </value>
-              </entry>
-              <entry>
                 <key>Null Value Representation</key>
                 <value>
                   <name>Null Value Representation</name>
                 </value>
               </entry>
               <entry>
-                <key>next</key>
+                <key>Path Not Found Behavior</key>
                 <value>
-                  <name>next</name>
+                  <name>Path Not Found Behavior</name>
                 </value>
               </entry>
             </descriptors>
@@ -446,6 +443,10 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
             <lossTolerant>false</lossTolerant>
             <penaltyDuration>30 sec</penaltyDuration>
             <properties>
+              <entry>
+                <key>next</key>
+                <value>$.next</value>
+              </entry>
               <entry>
                 <key>Destination</key>
                 <value>flowfile-content</value>
@@ -455,16 +456,12 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                 <value>auto-detect</value>
               </entry>
               <entry>
-                <key>Path Not Found Behavior</key>
-                <value>ignore</value>
-              </entry>
-              <entry>
                 <key>Null Value Representation</key>
                 <value>empty string</value>
               </entry>
               <entry>
-                <key>next</key>
-                <value>$.next</value>
+                <key>Path Not Found Behavior</key>
+                <value>ignore</value>
               </entry>
             </properties>
             <runDurationMillis>0</runDurationMillis>
@@ -493,8 +490,8 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
           <id>b0bfed8e-5442-3ee8-0000-000000000000</id>
           <parentGroupId>02247fc8-6d6e-386b-0000-000000000000</parentGroupId>
           <position>
-            <x>471.5527250404158</x>
-            <y>757.8753178284414</y>
+            <x>1022.2907011146345</x>
+            <y>1174.4500858948477</y>
           </position>
           <bundle>
             <artifact>nifi-standard-nar</artifact>
@@ -507,15 +504,33 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
             <concurrentlySchedulableTaskCount>0</concurrentlySchedulableTaskCount>
             <descriptors>
               <entry>
+                <key>Log prefix</key>
+                <value>
+                  <name>Log prefix</name>
+                </value>
+              </entry>
+              <entry>
+                <key>character-set</key>
+                <value>
+                  <name>character-set</name>
+                </value>
+              </entry>
+              <entry>
                 <key>Log Level</key>
                 <value>
                   <name>Log Level</name>
                 </value>
               </entry>
               <entry>
-                <key>Log Payload</key>
+                <key>attributes-to-ignore-regex</key>
                 <value>
-                  <name>Log Payload</name>
+                  <name>attributes-to-ignore-regex</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Attributes to Ignore</key>
+                <value>
+                  <name>Attributes to Ignore</name>
                 </value>
               </entry>
               <entry>
@@ -531,27 +546,9 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                 </value>
               </entry>
               <entry>
-                <key>Attributes to Ignore</key>
+                <key>Log Payload</key>
                 <value>
-                  <name>Attributes to Ignore</name>
-                </value>
-              </entry>
-              <entry>
-                <key>attributes-to-ignore-regex</key>
-                <value>
-                  <name>attributes-to-ignore-regex</name>
-                </value>
-              </entry>
-              <entry>
-                <key>Log prefix</key>
-                <value>
-                  <name>Log prefix</name>
-                </value>
-              </entry>
-              <entry>
-                <key>character-set</key>
-                <value>
-                  <name>character-set</name>
+                  <name>Log Payload</name>
                 </value>
               </entry>
             </descriptors>
@@ -560,12 +557,21 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
             <penaltyDuration>30 sec</penaltyDuration>
             <properties>
               <entry>
+                <key>Log prefix</key>
+              </entry>
+              <entry>
+                <key>character-set</key>
+                <value>US-ASCII</value>
+              </entry>
+              <entry>
                 <key>Log Level</key>
                 <value>info</value>
               </entry>
               <entry>
-                <key>Log Payload</key>
-                <value>false</value>
+                <key>attributes-to-ignore-regex</key>
+              </entry>
+              <entry>
+                <key>Attributes to Ignore</key>
               </entry>
               <entry>
                 <key>Attributes to Log</key>
@@ -575,17 +581,8 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                 <value>.*</value>
               </entry>
               <entry>
-                <key>Attributes to Ignore</key>
-              </entry>
-              <entry>
-                <key>attributes-to-ignore-regex</key>
-              </entry>
-              <entry>
-                <key>Log prefix</key>
-              </entry>
-              <entry>
-                <key>character-set</key>
-                <value>US-ASCII</value>
+                <key>Log Payload</key>
+                <value>false</value>
               </entry>
             </properties>
             <runDurationMillis>0</runDurationMillis>
@@ -620,15 +617,21 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
             <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
             <descriptors>
               <entry>
-                <key>Queue URL</key>
+                <key>Proxy Host</key>
                 <value>
-                  <name>Queue URL</name>
+                  <name>Proxy Host</name>
                 </value>
               </entry>
               <entry>
                 <key>Access Key</key>
                 <value>
                   <name>Access Key</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Communications Timeout</key>
+                <value>
+                  <name>Communications Timeout</name>
                 </value>
               </entry>
               <entry>
@@ -644,16 +647,21 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                 </value>
               </entry>
               <entry>
-                <key>AWS Credentials Provider service</key>
-                <value>
-                  <identifiesControllerService>org.apache.nifi.processors.aws.credentials.provider.service.AWSCredentialsProviderService</identifiesControllerService>
-                  <name>AWS Credentials Provider service</name>
-                </value>
-              </entry>
-              <entry>
                 <key>Region</key>
                 <value>
                   <name>Region</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Queue URL</key>
+                <value>
+                  <name>Queue URL</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Proxy Host Port</key>
+                <value>
+                  <name>Proxy Host Port</name>
                 </value>
               </entry>
               <entry>
@@ -663,21 +671,10 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                 </value>
               </entry>
               <entry>
-                <key>Communications Timeout</key>
+                <key>AWS Credentials Provider service</key>
                 <value>
-                  <name>Communications Timeout</name>
-                </value>
-              </entry>
-              <entry>
-                <key>Proxy Host</key>
-                <value>
-                  <name>Proxy Host</name>
-                </value>
-              </entry>
-              <entry>
-                <key>Proxy Host Port</key>
-                <value>
-                  <name>Proxy Host Port</name>
+                  <identifiesControllerService>org.apache.nifi.processors.aws.credentials.provider.service.AWSCredentialsProviderService</identifiesControllerService>
+                  <name>AWS Credentials Provider service</name>
                 </value>
               </entry>
             </descriptors>
@@ -686,11 +683,14 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
             <penaltyDuration>30 sec</penaltyDuration>
             <properties>
               <entry>
-                <key>Queue URL</key>
-                <value>https://sqs.us-east-1.amazonaws.com/038675855376/DPN-BagRecord-Sync</value>
+                <key>Proxy Host</key>
               </entry>
               <entry>
                 <key>Access Key</key>
+              </entry>
+              <entry>
+                <key>Communications Timeout</key>
+                <value>30 secs</value>
               </entry>
               <entry>
                 <key>Secret Key</key>
@@ -699,25 +699,22 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                 <key>Credentials File</key>
               </entry>
               <entry>
-                <key>AWS Credentials Provider service</key>
-              </entry>
-              <entry>
                 <key>Region</key>
                 <value>us-east-1</value>
+              </entry>
+              <entry>
+                <key>Queue URL</key>
+                <value>https://sqs.us-east-1.amazonaws.com/038675855376/DPN-BagRecord-Sync</value>
+              </entry>
+              <entry>
+                <key>Proxy Host Port</key>
               </entry>
               <entry>
                 <key>Delay</key>
                 <value>0 secs</value>
               </entry>
               <entry>
-                <key>Communications Timeout</key>
-                <value>30 secs</value>
-              </entry>
-              <entry>
-                <key>Proxy Host</key>
-              </entry>
-              <entry>
-                <key>Proxy Host Port</key>
+                <key>AWS Credentials Provider service</key>
               </entry>
             </properties>
             <runDurationMillis>0</runDurationMillis>
@@ -768,12 +765,6 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                 </value>
               </entry>
               <entry>
-                <key>Path Not Found Behavior</key>
-                <value>
-                  <name>Path Not Found Behavior</name>
-                </value>
-              </entry>
-              <entry>
                 <key>Null Value Representation</key>
                 <value>
                   <name>Null Value Representation</name>
@@ -783,6 +774,12 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                 <key>results</key>
                 <value>
                   <name>results</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Path Not Found Behavior</key>
+                <value>
+                  <name>Path Not Found Behavior</name>
                 </value>
               </entry>
             </descriptors>
@@ -799,16 +796,16 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                 <value>auto-detect</value>
               </entry>
               <entry>
-                <key>Path Not Found Behavior</key>
-                <value>ignore</value>
-              </entry>
-              <entry>
                 <key>Null Value Representation</key>
                 <value>empty string</value>
               </entry>
               <entry>
                 <key>results</key>
                 <value>$.results[0]</value>
+              </entry>
+              <entry>
+                <key>Path Not Found Behavior</key>
+                <value>ignore</value>
               </entry>
             </properties>
             <runDurationMillis>0</runDurationMillis>
@@ -863,6 +860,12 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                 </value>
               </entry>
               <entry>
+                <key>Evaluation Mode</key>
+                <value>
+                  <name>Evaluation Mode</name>
+                </value>
+              </entry>
+              <entry>
                 <key>Character Set</key>
                 <value>
                   <name>Character Set</name>
@@ -880,12 +883,6 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                   <name>Replacement Strategy</name>
                 </value>
               </entry>
-              <entry>
-                <key>Evaluation Mode</key>
-                <value>
-                  <name>Evaluation Mode</name>
-                </value>
-              </entry>
             </descriptors>
             <executionNode>ALL</executionNode>
             <lossTolerant>false</lossTolerant>
@@ -900,6 +897,10 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                 <value>$1</value>
               </entry>
               <entry>
+                <key>Evaluation Mode</key>
+                <value>Line-by-Line</value>
+              </entry>
+              <entry>
                 <key>Character Set</key>
                 <value>UTF-8</value>
               </entry>
@@ -910,10 +911,6 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
               <entry>
                 <key>Replacement Strategy</key>
                 <value>Regex Replace</value>
-              </entry>
-              <entry>
-                <key>Evaluation Mode</key>
-                <value>Line-by-Line</value>
               </entry>
             </properties>
             <runDurationMillis>0</runDurationMillis>
@@ -952,9 +949,9 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
             <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
             <descriptors>
               <entry>
-                <key>Queue URL</key>
+                <key>Proxy Host</key>
                 <value>
-                  <name>Queue URL</name>
+                  <name>Proxy Host</name>
                 </value>
               </entry>
               <entry>
@@ -970,6 +967,43 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                 </value>
               </entry>
               <entry>
+                <key>Queue URL</key>
+                <value>
+                  <name>Queue URL</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Receive Message Wait Time</key>
+                <value>
+                  <name>Receive Message Wait Time</name>
+                </value>
+              </entry>
+              <entry>
+                <key>AWS Credentials Provider service</key>
+                <value>
+                  <identifiesControllerService>org.apache.nifi.processors.aws.credentials.provider.service.AWSCredentialsProviderService</identifiesControllerService>
+                  <name>AWS Credentials Provider service</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Batch Size</key>
+                <value>
+                  <name>Batch Size</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Visibility Timeout</key>
+                <value>
+                  <name>Visibility Timeout</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Communications Timeout</key>
+                <value>
+                  <name>Communications Timeout</name>
+                </value>
+              </entry>
+              <entry>
                 <key>Secret Key</key>
                 <value>
                   <name>Secret Key</name>
@@ -982,52 +1016,15 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                 </value>
               </entry>
               <entry>
-                <key>AWS Credentials Provider service</key>
-                <value>
-                  <identifiesControllerService>org.apache.nifi.processors.aws.credentials.provider.service.AWSCredentialsProviderService</identifiesControllerService>
-                  <name>AWS Credentials Provider service</name>
-                </value>
-              </entry>
-              <entry>
                 <key>Region</key>
                 <value>
                   <name>Region</name>
                 </value>
               </entry>
               <entry>
-                <key>Batch Size</key>
-                <value>
-                  <name>Batch Size</name>
-                </value>
-              </entry>
-              <entry>
-                <key>Communications Timeout</key>
-                <value>
-                  <name>Communications Timeout</name>
-                </value>
-              </entry>
-              <entry>
                 <key>Character Set</key>
                 <value>
                   <name>Character Set</name>
-                </value>
-              </entry>
-              <entry>
-                <key>Visibility Timeout</key>
-                <value>
-                  <name>Visibility Timeout</name>
-                </value>
-              </entry>
-              <entry>
-                <key>Receive Message Wait Time</key>
-                <value>
-                  <name>Receive Message Wait Time</name>
-                </value>
-              </entry>
-              <entry>
-                <key>Proxy Host</key>
-                <value>
-                  <name>Proxy Host</name>
                 </value>
               </entry>
               <entry>
@@ -1042,8 +1039,7 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
             <penaltyDuration>30 sec</penaltyDuration>
             <properties>
               <entry>
-                <key>Queue URL</key>
-                <value>https://sqs.us-east-1.amazonaws.com/038675855376/DPN-NiFi-Flow</value>
+                <key>Proxy Host</key>
               </entry>
               <entry>
                 <key>Auto Delete Messages</key>
@@ -1053,40 +1049,41 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                 <key>Access Key</key>
               </entry>
               <entry>
-                <key>Secret Key</key>
-              </entry>
-              <entry>
-                <key>Credentials File</key>
-              </entry>
-              <entry>
-                <key>AWS Credentials Provider service</key>
-              </entry>
-              <entry>
-                <key>Region</key>
-                <value>us-east-1</value>
-              </entry>
-              <entry>
-                <key>Batch Size</key>
-                <value>1</value>
-              </entry>
-              <entry>
-                <key>Communications Timeout</key>
-                <value>90 secs</value>
-              </entry>
-              <entry>
-                <key>Character Set</key>
-                <value>UTF-8</value>
-              </entry>
-              <entry>
-                <key>Visibility Timeout</key>
-                <value>5 mins</value>
+                <key>Queue URL</key>
+                <value>https://sqs.us-east-1.amazonaws.com/038675855376/DPN-NiFi-Flow</value>
               </entry>
               <entry>
                 <key>Receive Message Wait Time</key>
                 <value>0 sec</value>
               </entry>
               <entry>
-                <key>Proxy Host</key>
+                <key>AWS Credentials Provider service</key>
+              </entry>
+              <entry>
+                <key>Batch Size</key>
+                <value>1</value>
+              </entry>
+              <entry>
+                <key>Visibility Timeout</key>
+                <value>5 mins</value>
+              </entry>
+              <entry>
+                <key>Communications Timeout</key>
+                <value>90 secs</value>
+              </entry>
+              <entry>
+                <key>Secret Key</key>
+              </entry>
+              <entry>
+                <key>Credentials File</key>
+              </entry>
+              <entry>
+                <key>Region</key>
+                <value>us-east-1</value>
+              </entry>
+              <entry>
+                <key>Character Set</key>
+                <value>UTF-8</value>
               </entry>
               <entry>
                 <key>Proxy Host Port</key>
@@ -1110,8 +1107,8 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
           <id>0d0ce7fd-4ad9-3a20-0000-000000000000</id>
           <parentGroupId>02247fc8-6d6e-386b-0000-000000000000</parentGroupId>
           <position>
-            <x>1324.1577658275137</x>
-            <y>1210.1991040427415</y>
+            <x>1331.2245382884512</x>
+            <y>1323.1759106833665</y>
           </position>
           <bundle>
             <artifact>nifi-standard-nar</artifact>
@@ -1124,15 +1121,33 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
             <concurrentlySchedulableTaskCount>0</concurrentlySchedulableTaskCount>
             <descriptors>
               <entry>
+                <key>Log prefix</key>
+                <value>
+                  <name>Log prefix</name>
+                </value>
+              </entry>
+              <entry>
+                <key>character-set</key>
+                <value>
+                  <name>character-set</name>
+                </value>
+              </entry>
+              <entry>
                 <key>Log Level</key>
                 <value>
                   <name>Log Level</name>
                 </value>
               </entry>
               <entry>
-                <key>Log Payload</key>
+                <key>attributes-to-ignore-regex</key>
                 <value>
-                  <name>Log Payload</name>
+                  <name>attributes-to-ignore-regex</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Attributes to Ignore</key>
+                <value>
+                  <name>Attributes to Ignore</name>
                 </value>
               </entry>
               <entry>
@@ -1148,27 +1163,9 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                 </value>
               </entry>
               <entry>
-                <key>Attributes to Ignore</key>
+                <key>Log Payload</key>
                 <value>
-                  <name>Attributes to Ignore</name>
-                </value>
-              </entry>
-              <entry>
-                <key>attributes-to-ignore-regex</key>
-                <value>
-                  <name>attributes-to-ignore-regex</name>
-                </value>
-              </entry>
-              <entry>
-                <key>Log prefix</key>
-                <value>
-                  <name>Log prefix</name>
-                </value>
-              </entry>
-              <entry>
-                <key>character-set</key>
-                <value>
-                  <name>character-set</name>
+                  <name>Log Payload</name>
                 </value>
               </entry>
             </descriptors>
@@ -1177,12 +1174,21 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
             <penaltyDuration>30 sec</penaltyDuration>
             <properties>
               <entry>
+                <key>Log prefix</key>
+              </entry>
+              <entry>
+                <key>character-set</key>
+                <value>US-ASCII</value>
+              </entry>
+              <entry>
                 <key>Log Level</key>
                 <value>info</value>
               </entry>
               <entry>
-                <key>Log Payload</key>
-                <value>true</value>
+                <key>attributes-to-ignore-regex</key>
+              </entry>
+              <entry>
+                <key>Attributes to Ignore</key>
               </entry>
               <entry>
                 <key>Attributes to Log</key>
@@ -1192,17 +1198,8 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                 <value>.*</value>
               </entry>
               <entry>
-                <key>Attributes to Ignore</key>
-              </entry>
-              <entry>
-                <key>attributes-to-ignore-regex</key>
-              </entry>
-              <entry>
-                <key>Log prefix</key>
-              </entry>
-              <entry>
-                <key>character-set</key>
-                <value>US-ASCII</value>
+                <key>Log Payload</key>
+                <value>true</value>
               </entry>
             </properties>
             <runDurationMillis>0</runDurationMillis>
@@ -1237,15 +1234,21 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
             <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
             <descriptors>
               <entry>
-                <key>Queue URL</key>
+                <key>Proxy Host</key>
                 <value>
-                  <name>Queue URL</name>
+                  <name>Proxy Host</name>
                 </value>
               </entry>
               <entry>
                 <key>Access Key</key>
                 <value>
                   <name>Access Key</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Communications Timeout</key>
+                <value>
+                  <name>Communications Timeout</name>
                 </value>
               </entry>
               <entry>
@@ -1261,16 +1264,21 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                 </value>
               </entry>
               <entry>
-                <key>AWS Credentials Provider service</key>
-                <value>
-                  <identifiesControllerService>org.apache.nifi.processors.aws.credentials.provider.service.AWSCredentialsProviderService</identifiesControllerService>
-                  <name>AWS Credentials Provider service</name>
-                </value>
-              </entry>
-              <entry>
                 <key>Region</key>
                 <value>
                   <name>Region</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Queue URL</key>
+                <value>
+                  <name>Queue URL</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Proxy Host Port</key>
+                <value>
+                  <name>Proxy Host Port</name>
                 </value>
               </entry>
               <entry>
@@ -1280,21 +1288,10 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                 </value>
               </entry>
               <entry>
-                <key>Communications Timeout</key>
+                <key>AWS Credentials Provider service</key>
                 <value>
-                  <name>Communications Timeout</name>
-                </value>
-              </entry>
-              <entry>
-                <key>Proxy Host</key>
-                <value>
-                  <name>Proxy Host</name>
-                </value>
-              </entry>
-              <entry>
-                <key>Proxy Host Port</key>
-                <value>
-                  <name>Proxy Host Port</name>
+                  <identifiesControllerService>org.apache.nifi.processors.aws.credentials.provider.service.AWSCredentialsProviderService</identifiesControllerService>
+                  <name>AWS Credentials Provider service</name>
                 </value>
               </entry>
             </descriptors>
@@ -1303,11 +1300,14 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
             <penaltyDuration>30 sec</penaltyDuration>
             <properties>
               <entry>
-                <key>Queue URL</key>
-                <value>https://sqs.us-east-1.amazonaws.com/038675855376/DPN-NiFi-Flow</value>
+                <key>Proxy Host</key>
               </entry>
               <entry>
                 <key>Access Key</key>
+              </entry>
+              <entry>
+                <key>Communications Timeout</key>
+                <value>30 secs</value>
               </entry>
               <entry>
                 <key>Secret Key</key>
@@ -1316,25 +1316,22 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                 <key>Credentials File</key>
               </entry>
               <entry>
-                <key>AWS Credentials Provider service</key>
-              </entry>
-              <entry>
                 <key>Region</key>
                 <value>us-east-1</value>
+              </entry>
+              <entry>
+                <key>Queue URL</key>
+                <value>https://sqs.us-east-1.amazonaws.com/038675855376/DPN-NiFi-Flow</value>
+              </entry>
+              <entry>
+                <key>Proxy Host Port</key>
               </entry>
               <entry>
                 <key>Delay</key>
                 <value>0 secs</value>
               </entry>
               <entry>
-                <key>Communications Timeout</key>
-                <value>30 secs</value>
-              </entry>
-              <entry>
-                <key>Proxy Host</key>
-              </entry>
-              <entry>
-                <key>Proxy Host Port</key>
+                <key>AWS Credentials Provider service</key>
               </entry>
             </properties>
             <runDurationMillis>0</runDurationMillis>
@@ -1359,8 +1356,8 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
           <id>5ea6d01d-6557-3f54-0000-000000000000</id>
           <parentGroupId>02247fc8-6d6e-386b-0000-000000000000</parentGroupId>
           <position>
-            <x>911.6044385188134</x>
-            <y>846.5242509147281</y>
+            <x>1328.1987378352196</x>
+            <y>1024.4594315787906</y>
           </position>
           <bundle>
             <artifact>nifi-standard-nar</artifact>
@@ -1373,15 +1370,33 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
             <concurrentlySchedulableTaskCount>0</concurrentlySchedulableTaskCount>
             <descriptors>
               <entry>
+                <key>Log prefix</key>
+                <value>
+                  <name>Log prefix</name>
+                </value>
+              </entry>
+              <entry>
+                <key>character-set</key>
+                <value>
+                  <name>character-set</name>
+                </value>
+              </entry>
+              <entry>
                 <key>Log Level</key>
                 <value>
                   <name>Log Level</name>
                 </value>
               </entry>
               <entry>
-                <key>Log Payload</key>
+                <key>attributes-to-ignore-regex</key>
                 <value>
-                  <name>Log Payload</name>
+                  <name>attributes-to-ignore-regex</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Attributes to Ignore</key>
+                <value>
+                  <name>Attributes to Ignore</name>
                 </value>
               </entry>
               <entry>
@@ -1397,27 +1412,9 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                 </value>
               </entry>
               <entry>
-                <key>Attributes to Ignore</key>
+                <key>Log Payload</key>
                 <value>
-                  <name>Attributes to Ignore</name>
-                </value>
-              </entry>
-              <entry>
-                <key>attributes-to-ignore-regex</key>
-                <value>
-                  <name>attributes-to-ignore-regex</name>
-                </value>
-              </entry>
-              <entry>
-                <key>Log prefix</key>
-                <value>
-                  <name>Log prefix</name>
-                </value>
-              </entry>
-              <entry>
-                <key>character-set</key>
-                <value>
-                  <name>character-set</name>
+                  <name>Log Payload</name>
                 </value>
               </entry>
             </descriptors>
@@ -1426,12 +1423,21 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
             <penaltyDuration>30 sec</penaltyDuration>
             <properties>
               <entry>
+                <key>Log prefix</key>
+              </entry>
+              <entry>
+                <key>character-set</key>
+                <value>US-ASCII</value>
+              </entry>
+              <entry>
                 <key>Log Level</key>
                 <value>info</value>
               </entry>
               <entry>
-                <key>Log Payload</key>
-                <value>false</value>
+                <key>attributes-to-ignore-regex</key>
+              </entry>
+              <entry>
+                <key>Attributes to Ignore</key>
               </entry>
               <entry>
                 <key>Attributes to Log</key>
@@ -1441,17 +1447,8 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                 <value>.*</value>
               </entry>
               <entry>
-                <key>Attributes to Ignore</key>
-              </entry>
-              <entry>
-                <key>attributes-to-ignore-regex</key>
-              </entry>
-              <entry>
-                <key>Log prefix</key>
-              </entry>
-              <entry>
-                <key>character-set</key>
-                <value>US-ASCII</value>
+                <key>Log Payload</key>
+                <value>false</value>
               </entry>
             </properties>
             <runDurationMillis>0</runDurationMillis>
@@ -1486,9 +1483,9 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
             <concurrentlySchedulableTaskCount>0</concurrentlySchedulableTaskCount>
             <descriptors>
               <entry>
-                <key>Command Arguments</key>
+                <key>Max Attribute Length</key>
                 <value>
-                  <name>Command Arguments</name>
+                  <name>Max Attribute Length</name>
                 </value>
               </entry>
               <entry>
@@ -1498,21 +1495,9 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                 </value>
               </entry>
               <entry>
-                <key>Ignore STDIN</key>
-                <value>
-                  <name>Ignore STDIN</name>
-                </value>
-              </entry>
-              <entry>
                 <key>Working Directory</key>
                 <value>
                   <name>Working Directory</name>
-                </value>
-              </entry>
-              <entry>
-                <key>Argument Delimiter</key>
-                <value>
-                  <name>Argument Delimiter</name>
                 </value>
               </entry>
               <entry>
@@ -1522,9 +1507,21 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                 </value>
               </entry>
               <entry>
-                <key>Max Attribute Length</key>
+                <key>Argument Delimiter</key>
                 <value>
-                  <name>Max Attribute Length</name>
+                  <name>Argument Delimiter</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Ignore STDIN</key>
+                <value>
+                  <name>Ignore STDIN</name>
+                </value>
+              </entry>
+              <entry>
+                <key>Command Arguments</key>
+                <value>
+                  <name>Command Arguments</name>
                 </value>
               </entry>
             </descriptors>
@@ -1533,30 +1530,30 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
             <penaltyDuration>30 sec</penaltyDuration>
             <properties>
               <entry>
-                <key>Command Arguments</key>
+                <key>Max Attribute Length</key>
+                <value>512</value>
               </entry>
               <entry>
                 <key>Command Path</key>
                 <value>/opt/dpn/get_api_endpoint.py</value>
               </entry>
               <entry>
-                <key>Ignore STDIN</key>
-                <value>false</value>
-              </entry>
-              <entry>
                 <key>Working Directory</key>
                 <value>/tmp/dpn</value>
+              </entry>
+              <entry>
+                <key>Output Destination Attribute</key>
               </entry>
               <entry>
                 <key>Argument Delimiter</key>
                 <value>;</value>
               </entry>
               <entry>
-                <key>Output Destination Attribute</key>
+                <key>Ignore STDIN</key>
+                <value>false</value>
               </entry>
               <entry>
-                <key>Max Attribute Length</key>
-                <value>512</value>
+                <key>Command Arguments</key>
               </entry>
             </properties>
             <runDurationMillis>0</runDurationMillis>
@@ -1607,6 +1604,12 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                 </value>
               </entry>
               <entry>
+                <key>Evaluation Mode</key>
+                <value>
+                  <name>Evaluation Mode</name>
+                </value>
+              </entry>
+              <entry>
                 <key>Character Set</key>
                 <value>
                   <name>Character Set</name>
@@ -1624,12 +1627,6 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                   <name>Replacement Strategy</name>
                 </value>
               </entry>
-              <entry>
-                <key>Evaluation Mode</key>
-                <value>
-                  <name>Evaluation Mode</name>
-                </value>
-              </entry>
             </descriptors>
             <executionNode>ALL</executionNode>
             <lossTolerant>false</lossTolerant>
@@ -1644,6 +1641,10 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
                 <value></value>
               </entry>
               <entry>
+                <key>Evaluation Mode</key>
+                <value>Entire text</value>
+              </entry>
+              <entry>
                 <key>Character Set</key>
                 <value>UTF-8</value>
               </entry>
@@ -1654,10 +1655,6 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
               <entry>
                 <key>Replacement Strategy</key>
                 <value>Regex Replace</value>
-              </entry>
-              <entry>
-                <key>Evaluation Mode</key>
-                <value>Entire text</value>
               </entry>
             </properties>
             <runDurationMillis>0</runDurationMillis>
@@ -1682,5 +1679,5 @@ Bag records will be posted to SQS: DPN-BagRecord-Sync</comments>
       <name>DPN-Query-Bags</name>
     </processGroups>
   </snippet>
-  <timestamp>12/05/2017 20:55:30 UTC</timestamp>
+  <timestamp>11/07/2017 16:36:57 UTC</timestamp>
 </template>

@@ -3,11 +3,7 @@
 
 from dpn_python_library import *
 import json
-import requests
 import sys
-
-dpn = {'url': 'http://ec2-54-197-14-13.compute-1.amazonaws.com'}
-dpn_headers={'Content-Type': 'application/json','Accept': 'application/json', 'Authorization': 'Token token=dpn_token'}
 
 #  Default replication policy 
 replication_copies=3

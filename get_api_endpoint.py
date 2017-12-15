@@ -43,5 +43,6 @@ if len(dpn_querystring) is 0:
     exit(1)
 if get_dpn_api(dpn_host, dpn_token, dpn_querystring) is 200:
     exit(0)
+# fallthrough
 exit(1)
 

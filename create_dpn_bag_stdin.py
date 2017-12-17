@@ -1,7 +1,6 @@
 #!/usr/bin/python
 import json
 import requests
-import datetime
 import sys
 import os
 from dpn_python_library import *

@@ -30,7 +30,7 @@ try:
         log_message("Record required as input")
         exit(1)
     repl_record=json.loads(input_record)
-except:
+except (ValueError, IndexError):
     log_message("JSON record required as input")
     exit(1)
 

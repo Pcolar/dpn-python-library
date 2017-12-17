@@ -3,7 +3,6 @@ __license__ = "BSD Version 3 License"
 
 import json
 import requests
-import datetime
 import sys
 import os
 from dpn_python_library import *
@@ -36,7 +35,7 @@ try:
 
     with open(infile, 'r') as json_data:
         dpn_bag=json_data.read().replace('\n', '')
-except:
+except (ValueError, IndexError):
     log_message("A DPN bag metadata file in json format must be specified" )
     exit(1)
 

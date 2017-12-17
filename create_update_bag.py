@@ -31,7 +31,7 @@ try:
         exit(1)
     sync_record=json.loads(input_record)
 
-except:
+except (ValueError, IndexError):
     log_message("JSON formatted record required as input")
     exit(1)
 

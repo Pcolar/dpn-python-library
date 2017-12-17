@@ -1,3 +1,4 @@
+#  Creates a bag entry in the DPN architecture via the DPN API
 __copyright__ = "Copyright (C) 2017 Digital Preservation Network, LLC"
 __license__ = "BSD Version 3 License"
 
@@ -7,7 +8,6 @@ import sys
 import os
 from dpn_python_library import *
 
-""" Creates a bag entry in the DPN architecture via the DPN API """
 ###  Requires a json file with the bag data
 
 if  "dpn_host" in os.environ:

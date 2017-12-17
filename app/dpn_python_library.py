@@ -81,7 +81,8 @@ def  create_csv(json_file):
           csvwriter.writerow(values)
           rec_num += 1
     except ClientError as boto3_error:
-      log_message("ERROR: File " + json_file + " not found " + u'boto3_error')
+      log_message("ERROR: File " + json_file + " not found")
+      log_message(boto3_error.message)
     else:
       log_message("Rows exported: " + str(len(records)))
       input_file.close()
@@ -97,7 +98,8 @@ def download_s3_file(json_file, s3_bucket='dpn-dcv'):
         try:
           s3.Object(s3_bucket, json_file).download_file(json_file)
         except ClientError as boto3_error:
-          log_message("ERROR: S3 object not found " + json_file + " " + u'boto3_error')
+          log_message("ERROR: S3 object not found " + json_file)
+          log_message(boto3_error.message)
 
 def delete_s3_file(file_object, s3_bucket='dpn-dcv'):
     """  Delete a file object from S3 """
@@ -115,4 +117,3 @@ def get_uuidv4():
       uuid=r.text
       log_message("UUID: " + uuid)
     return uuid
-

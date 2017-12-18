@@ -1,3 +1,4 @@
+#!/usr/bin/python
 """ Parse snapshot report """
 
 from app.dpn_python_library import *

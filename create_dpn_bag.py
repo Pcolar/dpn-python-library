@@ -1,3 +1,4 @@
+#!/usr/bin/python
 #  Creates a bag entry in the DPN architecture via the DPN API
 __copyright__ = "Copyright (C) 2017 Digital Preservation Network, LLC"
 __license__ = "BSD Version 3 License"

@@ -3,7 +3,6 @@
 __copyright__ = "Copyright (C) 2017 Digital Preservation Network, LLC"
 __license__ = "BSD Version 3 License"
 
-import json
 import requests
 import sys
 import os

@@ -1,12 +1,11 @@
 #!/usr/bin/python
 
-import json
 import requests
 import sys
 import os
 from dpn_python_library import *
 
-""" Creates a bag entry in the DPN architecture via the DPN API """
+# Creates a bag entry in the DPN architecture via the DPN API
 ###  Requires a json file with the bag data
 
 if  "dpn_host" in os.environ:

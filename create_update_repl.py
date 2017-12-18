@@ -13,7 +13,7 @@ import os
 try:
     dpn_host = os.environ['dpn_host']
 #    log_message("Host: "+os.environ['dpn_host'])
-except:
+except (ValueError, IndexError):
     log_message("expected dpn_host environment variable")
     exit(1)
 

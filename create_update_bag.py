@@ -45,7 +45,7 @@ if response.status_code is 200:
         log_message("update sync record")
         update_response=requests.put(dpn_host+dpn_querystring, headers=dpn_headers, data=input_record)
         if update_response.status_code is not 200:
-            log_message("Return code: " + str(update_response.status_code))
+            log_message("Return code: " + str(update_response.status_code) +" "+ sync_record['uuid'])
             exit(1)
 #    else:
 #        if response_record['updated_at'] > sync_record['updated_at']:

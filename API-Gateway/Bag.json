@@ -1,0 +1,79 @@
+{
+"required" : [ "uuid", "local_id", "size", "first_version_uuid", "ingest_node", "admin_node", "member", "version", "bag_type", "interpretive", "rights", "replication_nodes" ],
+  "type" : "object",
+  "properties" : {
+    "uuid" : {
+      "type" : "string",
+      "format" : "uuid",
+      "description" : "Unique UUIDv4 identifier for this bag."
+    },
+    "local_id" : {
+      "type" : "string",
+      "description" : "Primary local identifier"
+    },
+    "size" : {
+      "type" : "number",
+      "description" : "Size of Bag in bytes"
+    },
+    "first_version_uuid" : {
+      "type" : "string",
+      "format" : "uuid",
+      "description" : "UUID of the first version of this bag."
+    },
+    "ingest_node" : {
+      "type" : "string",
+      "description" : "Namespace of the node that originally ingest this bag."
+    },
+    "admin_node" : {
+      "type" : "string",
+      "description" : "Namespace of the node that administers this bag."
+    },
+    "member" : {
+      "type" : "string",
+      "format" : "uuid",
+      "description" : "UUIDv4 of the member who owns the bag"
+    },
+    "version" : {
+      "type" : "integer",
+      "description" : "This bag's version number, beginning with 1."
+    },
+    "bag_type" : {
+      "type" : "string",
+      "description" : "Single character specifying the type of this bag. 'D'->Data, 'I'->Interpretive, 'R'->Rights.",
+      "enum" : [ "D", "I", "R" ]
+    },
+    "interpretive" : {
+      "type" : "array",
+      "description" : "Empty array or array of uuids of this bag's interpretive bags.",
+      "items" : {
+        "type" : "string",
+        "format" : "uuid"
+      }
+    },
+    "rights" : {
+      "type" : "array",
+      "description" : "Empty array or array of uuids of this bag's rights bags.",
+      "items" : {
+        "type" : "string",
+        "format" : "uuid"
+      }
+    },
+    "replication_nodes" : {
+      "type" : "array",
+      "description" : "Empty array or array of namespaces of this bag's replicating nodes.",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "created_at" : {
+      "type" : "string",
+      "format" : "date-time",
+      "description" : "DPN-formatted date-time when this record was first created"
+    },
+    "updated_at" : {
+      "type" : "string",
+      "format" : "date-time",
+      "description" : "DPN-formatted date-time when this record was last updated"
+    }
+  }
+}

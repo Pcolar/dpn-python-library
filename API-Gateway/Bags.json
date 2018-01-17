@@ -1,0 +1,7 @@
+{
+  "type" : "array",
+  "required" : [ "uuid", "local_id" ],
+  "items" : {
+    "$ref":"https://apigateway.amazonaws.com/restapis/iryhdmou12/models/Bag"
+  }
+}

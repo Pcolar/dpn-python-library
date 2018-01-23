@@ -1,0 +1,729 @@
+<?xml version="1.0" ?>
+<template encoding-version="1.1">
+  <description>A set of workflows to allow external peers or storage provides to create DPN transactions.</description>
+  <groupId>8216b3eb-015f-1000-5d8a-47c44c296414</groupId>
+  <name>Peer-Node-Workflows-20180122</name>
+  <snippet>
+    <processGroups>
+      <id>481d8492-a7e1-3b1b-0000-000000000000</id>
+      <parentGroupId>4c8a67c3-bc0e-3999-0000-000000000000</parentGroupId>
+      <position>
+        <x>0.0</x>
+        <y>0.0</y>
+      </position>
+      <comments>Workflows to permit transactions from an external peer or storage node.
+</comments>
+      <contents>
+        <processGroups>
+          <id>90374f03-3df0-332c-0000-000000000000</id>
+          <parentGroupId>481d8492-a7e1-3b1b-0000-000000000000</parentGroupId>
+          <position>
+            <x>-2090.2350556197234</x>
+            <y>2171.263421338946</y>
+          </position>
+          <comments>Retrieve a set of Bag registry records from SQS: DPN-Create-Bag
+Add bag record to registry</comments>
+          <contents>
+            <connections>
+              <id>b573ffc8-ff9a-3375-0000-000000000000</id>
+              <parentGroupId>90374f03-3df0-332c-0000-000000000000</parentGroupId>
+              <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+              <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+              <destination>
+                <groupId>90374f03-3df0-332c-0000-000000000000</groupId>
+                <id>ea6b3b4a-6ac1-3af6-0000-000000000000</id>
+                <type>PROCESSOR</type>
+              </destination>
+              <flowFileExpiration>0 sec</flowFileExpiration>
+              <labelIndex>1</labelIndex>
+              <name></name>
+              <selectedRelationships>success</selectedRelationships>
+              <source>
+                <groupId>90374f03-3df0-332c-0000-000000000000</groupId>
+                <id>b35cc031-0d91-3ef8-0000-000000000000</id>
+                <type>PROCESSOR</type>
+              </source>
+              <zIndex>0</zIndex>
+            </connections>
+            <connections>
+              <id>dce6ab30-173f-342b-0000-000000000000</id>
+              <parentGroupId>90374f03-3df0-332c-0000-000000000000</parentGroupId>
+              <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+              <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+              <destination>
+                <groupId>90374f03-3df0-332c-0000-000000000000</groupId>
+                <id>6b4e8e60-051a-3752-0000-000000000000</id>
+                <type>PROCESSOR</type>
+              </destination>
+              <flowFileExpiration>0 sec</flowFileExpiration>
+              <labelIndex>1</labelIndex>
+              <name></name>
+              <selectedRelationships>output stream</selectedRelationships>
+              <source>
+                <groupId>90374f03-3df0-332c-0000-000000000000</groupId>
+                <id>ea6b3b4a-6ac1-3af6-0000-000000000000</id>
+                <type>PROCESSOR</type>
+              </source>
+              <zIndex>0</zIndex>
+            </connections>
+            <connections>
+              <id>4dcd4b96-0bdd-389c-0000-000000000000</id>
+              <parentGroupId>90374f03-3df0-332c-0000-000000000000</parentGroupId>
+              <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+              <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+              <destination>
+                <groupId>90374f03-3df0-332c-0000-000000000000</groupId>
+                <id>a4c032f6-5319-3972-0000-000000000000</id>
+                <type>PROCESSOR</type>
+              </destination>
+              <flowFileExpiration>0 sec</flowFileExpiration>
+              <labelIndex>1</labelIndex>
+              <name></name>
+              <selectedRelationships>failure</selectedRelationships>
+              <source>
+                <groupId>90374f03-3df0-332c-0000-000000000000</groupId>
+                <id>6b4e8e60-051a-3752-0000-000000000000</id>
+                <type>PROCESSOR</type>
+              </source>
+              <zIndex>0</zIndex>
+            </connections>
+            <connections>
+              <id>64e7edd5-487c-3cb8-0000-000000000000</id>
+              <parentGroupId>90374f03-3df0-332c-0000-000000000000</parentGroupId>
+              <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+              <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+              <destination>
+                <groupId>90374f03-3df0-332c-0000-000000000000</groupId>
+                <id>6b4e8e60-051a-3752-0000-000000000000</id>
+                <type>PROCESSOR</type>
+              </destination>
+              <flowFileExpiration>0 sec</flowFileExpiration>
+              <labelIndex>1</labelIndex>
+              <name></name>
+              <selectedRelationships>output stream</selectedRelationships>
+              <source>
+                <groupId>90374f03-3df0-332c-0000-000000000000</groupId>
+                <id>ea6b3b4a-6ac1-3af6-0000-000000000000</id>
+                <type>PROCESSOR</type>
+              </source>
+              <zIndex>0</zIndex>
+            </connections>
+            <processors>
+              <id>a4c032f6-5319-3972-0000-000000000000</id>
+              <parentGroupId>90374f03-3df0-332c-0000-000000000000</parentGroupId>
+              <position>
+                <x>993.1705397008307</x>
+                <y>708.7385378043284</y>
+              </position>
+              <bundle>
+                <artifact>nifi-standard-nar</artifact>
+                <group>org.apache.nifi</group>
+                <version>1.4.0</version>
+              </bundle>
+              <config>
+                <bulletinLevel>WARN</bulletinLevel>
+                <comments></comments>
+                <concurrentlySchedulableTaskCount>0</concurrentlySchedulableTaskCount>
+                <descriptors>
+                  <entry>
+                    <key>Log Level</key>
+                    <value>
+                      <name>Log Level</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Log Payload</key>
+                    <value>
+                      <name>Log Payload</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Attributes to Log</key>
+                    <value>
+                      <name>Attributes to Log</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>attributes-to-log-regex</key>
+                    <value>
+                      <name>attributes-to-log-regex</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Attributes to Ignore</key>
+                    <value>
+                      <name>Attributes to Ignore</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>attributes-to-ignore-regex</key>
+                    <value>
+                      <name>attributes-to-ignore-regex</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Log prefix</key>
+                    <value>
+                      <name>Log prefix</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>character-set</key>
+                    <value>
+                      <name>character-set</name>
+                    </value>
+                  </entry>
+                </descriptors>
+                <executionNode>ALL</executionNode>
+                <lossTolerant>false</lossTolerant>
+                <penaltyDuration>30 sec</penaltyDuration>
+                <properties>
+                  <entry>
+                    <key>Log Level</key>
+                    <value>info</value>
+                  </entry>
+                  <entry>
+                    <key>Log Payload</key>
+                    <value>false</value>
+                  </entry>
+                  <entry>
+                    <key>Attributes to Log</key>
+                  </entry>
+                  <entry>
+                    <key>attributes-to-log-regex</key>
+                    <value>.*</value>
+                  </entry>
+                  <entry>
+                    <key>Attributes to Ignore</key>
+                  </entry>
+                  <entry>
+                    <key>attributes-to-ignore-regex</key>
+                  </entry>
+                  <entry>
+                    <key>Log prefix</key>
+                  </entry>
+                  <entry>
+                    <key>character-set</key>
+                    <value>UTF-8</value>
+                  </entry>
+                </properties>
+                <runDurationMillis>0</runDurationMillis>
+                <schedulingPeriod>0 sec</schedulingPeriod>
+                <schedulingStrategy>EVENT_DRIVEN</schedulingStrategy>
+                <yieldDuration>1 sec</yieldDuration>
+              </config>
+              <name>LogAttribute</name>
+              <relationships>
+                <autoTerminate>true</autoTerminate>
+                <name>success</name>
+              </relationships>
+              <state>STOPPED</state>
+              <style></style>
+              <type>org.apache.nifi.processors.standard.LogAttribute</type>
+            </processors>
+            <processors>
+              <id>b35cc031-0d91-3ef8-0000-000000000000</id>
+              <parentGroupId>90374f03-3df0-332c-0000-000000000000</parentGroupId>
+              <position>
+                <x>186.9785627230085</x>
+                <y>522.7288799060902</y>
+              </position>
+              <bundle>
+                <artifact>nifi-aws-nar</artifact>
+                <group>org.apache.nifi</group>
+                <version>1.4.0</version>
+              </bundle>
+              <config>
+                <bulletinLevel>WARN</bulletinLevel>
+                <comments>Retrieves a bag record in JSON format</comments>
+                <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+                <descriptors>
+                  <entry>
+                    <key>Queue URL</key>
+                    <value>
+                      <name>Queue URL</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Auto Delete Messages</key>
+                    <value>
+                      <name>Auto Delete Messages</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Access Key</key>
+                    <value>
+                      <name>Access Key</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Secret Key</key>
+                    <value>
+                      <name>Secret Key</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Credentials File</key>
+                    <value>
+                      <name>Credentials File</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>AWS Credentials Provider service</key>
+                    <value>
+                      <identifiesControllerService>org.apache.nifi.processors.aws.credentials.provider.service.AWSCredentialsProviderService</identifiesControllerService>
+                      <name>AWS Credentials Provider service</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Region</key>
+                    <value>
+                      <name>Region</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Batch Size</key>
+                    <value>
+                      <name>Batch Size</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Communications Timeout</key>
+                    <value>
+                      <name>Communications Timeout</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Character Set</key>
+                    <value>
+                      <name>Character Set</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Visibility Timeout</key>
+                    <value>
+                      <name>Visibility Timeout</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Receive Message Wait Time</key>
+                    <value>
+                      <name>Receive Message Wait Time</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Proxy Host</key>
+                    <value>
+                      <name>Proxy Host</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Proxy Host Port</key>
+                    <value>
+                      <name>Proxy Host Port</name>
+                    </value>
+                  </entry>
+                </descriptors>
+                <executionNode>ALL</executionNode>
+                <lossTolerant>false</lossTolerant>
+                <penaltyDuration>30 sec</penaltyDuration>
+                <properties>
+                  <entry>
+                    <key>Queue URL</key>
+                    <value>https://sqs.us-east-1.amazonaws.com/038675855376/DPN-Create-Bag</value>
+                  </entry>
+                  <entry>
+                    <key>Auto Delete Messages</key>
+                    <value>true</value>
+                  </entry>
+                  <entry>
+                    <key>Access Key</key>
+                  </entry>
+                  <entry>
+                    <key>Secret Key</key>
+                  </entry>
+                  <entry>
+                    <key>Credentials File</key>
+                  </entry>
+                  <entry>
+                    <key>AWS Credentials Provider service</key>
+                  </entry>
+                  <entry>
+                    <key>Region</key>
+                    <value>us-east-1</value>
+                  </entry>
+                  <entry>
+                    <key>Batch Size</key>
+                    <value>10</value>
+                  </entry>
+                  <entry>
+                    <key>Communications Timeout</key>
+                    <value>30 secs</value>
+                  </entry>
+                  <entry>
+                    <key>Character Set</key>
+                    <value>UTF-8</value>
+                  </entry>
+                  <entry>
+                    <key>Visibility Timeout</key>
+                    <value>15 mins</value>
+                  </entry>
+                  <entry>
+                    <key>Receive Message Wait Time</key>
+                    <value>0 sec</value>
+                  </entry>
+                  <entry>
+                    <key>Proxy Host</key>
+                  </entry>
+                  <entry>
+                    <key>Proxy Host Port</key>
+                  </entry>
+                </properties>
+                <runDurationMillis>0</runDurationMillis>
+                <schedulingPeriod>5 sec</schedulingPeriod>
+                <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+                <yieldDuration>1 sec</yieldDuration>
+              </config>
+              <name>GetSQS DPN-Create-Bag</name>
+              <relationships>
+                <autoTerminate>false</autoTerminate>
+                <name>success</name>
+              </relationships>
+              <state>STOPPED</state>
+              <style></style>
+              <type>org.apache.nifi.processors.aws.sqs.GetSQS</type>
+            </processors>
+            <processors>
+              <id>ea6b3b4a-6ac1-3af6-0000-000000000000</id>
+              <parentGroupId>90374f03-3df0-332c-0000-000000000000</parentGroupId>
+              <position>
+                <x>594.4658108495132</x>
+                <y>526.1892438135951</y>
+              </position>
+              <bundle>
+                <artifact>nifi-standard-nar</artifact>
+                <group>org.apache.nifi</group>
+                <version>1.4.0</version>
+              </bundle>
+              <config>
+                <bulletinLevel>WARN</bulletinLevel>
+                <comments>Update Destination host and token </comments>
+                <concurrentlySchedulableTaskCount>0</concurrentlySchedulableTaskCount>
+                <descriptors>
+                  <entry>
+                    <key>Command Arguments</key>
+                    <value>
+                      <name>Command Arguments</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Command Path</key>
+                    <value>
+                      <name>Command Path</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Ignore STDIN</key>
+                    <value>
+                      <name>Ignore STDIN</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Working Directory</key>
+                    <value>
+                      <name>Working Directory</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Argument Delimiter</key>
+                    <value>
+                      <name>Argument Delimiter</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Output Destination Attribute</key>
+                    <value>
+                      <name>Output Destination Attribute</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Max Attribute Length</key>
+                    <value>
+                      <name>Max Attribute Length</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>dpn_host</key>
+                    <value>
+                      <name>dpn_host</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>dpn_token</key>
+                    <value>
+                      <name>dpn_token</name>
+                    </value>
+                  </entry>
+                </descriptors>
+                <executionNode>ALL</executionNode>
+                <lossTolerant>false</lossTolerant>
+                <penaltyDuration>30 sec</penaltyDuration>
+                <properties>
+                  <entry>
+                    <key>Command Arguments</key>
+                    <value>${dpn_host}</value>
+                  </entry>
+                  <entry>
+                    <key>Command Path</key>
+                    <value>/opt/dpn/create_update_bag.py</value>
+                  </entry>
+                  <entry>
+                    <key>Ignore STDIN</key>
+                    <value>false</value>
+                  </entry>
+                  <entry>
+                    <key>Working Directory</key>
+                    <value>/tmp/dpn</value>
+                  </entry>
+                  <entry>
+                    <key>Argument Delimiter</key>
+                    <value>;</value>
+                  </entry>
+                  <entry>
+                    <key>Output Destination Attribute</key>
+                  </entry>
+                  <entry>
+                    <key>Max Attribute Length</key>
+                    <value>512</value>
+                  </entry>
+                  <entry>
+                    <key>dpn_host</key>
+                    <value>http://ec2-34-225-251-34.compute-1.amazonaws.com</value>
+                  </entry>
+                  <entry>
+                    <key>dpn_token</key>
+                    <value>f4fac0e2b7e1401788d2b57f488134ad1</value>
+                  </entry>
+                </properties>
+                <runDurationMillis>0</runDurationMillis>
+                <schedulingPeriod>0 sec</schedulingPeriod>
+                <schedulingStrategy>EVENT_DRIVEN</schedulingStrategy>
+                <yieldDuration>1 sec</yieldDuration>
+              </config>
+              <name>UpdateBagRecordviaAPI</name>
+              <relationships>
+                <autoTerminate>true</autoTerminate>
+                <name>original</name>
+              </relationships>
+              <relationships>
+                <autoTerminate>false</autoTerminate>
+                <name>output stream</name>
+              </relationships>
+              <state>STOPPED</state>
+              <style></style>
+              <type>org.apache.nifi.processors.standard.ExecuteStreamCommand</type>
+            </processors>
+            <processors>
+              <id>6b4e8e60-051a-3752-0000-000000000000</id>
+              <parentGroupId>90374f03-3df0-332c-0000-000000000000</parentGroupId>
+              <position>
+                <x>992.9764979300337</x>
+                <y>529.7438034663792</y>
+              </position>
+              <bundle>
+                <artifact>nifi-standard-nar</artifact>
+                <group>org.apache.nifi</group>
+                <version>1.4.0</version>
+              </bundle>
+              <config>
+                <bulletinLevel>WARN</bulletinLevel>
+                <comments></comments>
+                <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+                <descriptors>
+                  <entry>
+                    <key>URL</key>
+                    <value>
+                      <name>URL</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Max Batch Size</key>
+                    <value>
+                      <name>Max Batch Size</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Max Data to Post per Second</key>
+                    <value>
+                      <name>Max Data to Post per Second</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>SSL Context Service</key>
+                    <value>
+                      <identifiesControllerService>org.apache.nifi.ssl.SSLContextService</identifiesControllerService>
+                      <name>SSL Context Service</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Username</key>
+                    <value>
+                      <name>Username</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Password</key>
+                    <value>
+                      <name>Password</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Send as FlowFile</key>
+                    <value>
+                      <name>Send as FlowFile</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Use Chunked Encoding</key>
+                    <value>
+                      <name>Use Chunked Encoding</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Compression Level</key>
+                    <value>
+                      <name>Compression Level</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Connection Timeout</key>
+                    <value>
+                      <name>Connection Timeout</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Data Timeout</key>
+                    <value>
+                      <name>Data Timeout</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Attributes to Send as HTTP Headers (Regex)</key>
+                    <value>
+                      <name>Attributes to Send as HTTP Headers (Regex)</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>User Agent</key>
+                    <value>
+                      <name>User Agent</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Proxy Host</key>
+                    <value>
+                      <name>Proxy Host</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Proxy Port</key>
+                    <value>
+                      <name>Proxy Port</name>
+                    </value>
+                  </entry>
+                  <entry>
+                    <key>Content-Type</key>
+                    <value>
+                      <name>Content-Type</name>
+                    </value>
+                  </entry>
+                </descriptors>
+                <executionNode>ALL</executionNode>
+                <lossTolerant>false</lossTolerant>
+                <penaltyDuration>30 sec</penaltyDuration>
+                <properties>
+                  <entry>
+                    <key>URL</key>
+                    <value>http://logs-01.loggly.com/inputs/5cadf10d-100f-4a85-90b3-e69cbe6fc8e1/tag/http/</value>
+                  </entry>
+                  <entry>
+                    <key>Max Batch Size</key>
+                    <value>100 MB</value>
+                  </entry>
+                  <entry>
+                    <key>Max Data to Post per Second</key>
+                  </entry>
+                  <entry>
+                    <key>SSL Context Service</key>
+                  </entry>
+                  <entry>
+                    <key>Username</key>
+                  </entry>
+                  <entry>
+                    <key>Password</key>
+                  </entry>
+                  <entry>
+                    <key>Send as FlowFile</key>
+                    <value>false</value>
+                  </entry>
+                  <entry>
+                    <key>Use Chunked Encoding</key>
+                    <value>true</value>
+                  </entry>
+                  <entry>
+                    <key>Compression Level</key>
+                    <value>0</value>
+                  </entry>
+                  <entry>
+                    <key>Connection Timeout</key>
+                    <value>30 sec</value>
+                  </entry>
+                  <entry>
+                    <key>Data Timeout</key>
+                    <value>60 sec</value>
+                  </entry>
+                  <entry>
+                    <key>Attributes to Send as HTTP Headers (Regex)</key>
+                  </entry>
+                  <entry>
+                    <key>User Agent</key>
+                    <value>Apache-HttpClient/4.5.3 (Java/1.8.0_151)</value>
+                  </entry>
+                  <entry>
+                    <key>Proxy Host</key>
+                  </entry>
+                  <entry>
+                    <key>Proxy Port</key>
+                  </entry>
+                  <entry>
+                    <key>Content-Type</key>
+                    <value>${mime.type}</value>
+                  </entry>
+                </properties>
+                <runDurationMillis>0</runDurationMillis>
+                <schedulingPeriod>0 sec</schedulingPeriod>
+                <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+                <yieldDuration>1 sec</yieldDuration>
+              </config>
+              <name>PostToLoggily</name>
+              <relationships>
+                <autoTerminate>false</autoTerminate>
+                <name>failure</name>
+              </relationships>
+              <relationships>
+                <autoTerminate>true</autoTerminate>
+                <name>success</name>
+              </relationships>
+              <state>STOPPED</state>
+              <style></style>
+              <type>org.apache.nifi.processors.standard.PostHTTP</type>
+            </processors>
+          </contents>
+          <name>DPN-Peer-Create-Bag</name>
+        </processGroups>
+      </contents>
+      <name>Peer-Node-Workflows</name>
+    </processGroups>
+  </snippet>
+  <timestamp>01/23/2018 16:21:43 UTC</timestamp>
+</template>

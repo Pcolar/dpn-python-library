@@ -7,6 +7,7 @@ import json
 import csv
 import datetime
 import time
+import os
 import boto3
 from botocore.exceptions import ClientError
 import requests
@@ -117,3 +118,19 @@ def get_uuidv4():
       uuid=r.text
       log_message("UUID: " + uuid)
     return uuid
+
+def load_environment():
+# read content from environment variables
+# expecting Host, Token
+#
+    if  "dpn_host" in os.environ:
+        dpn_host = os.environ['dpn_host']
+    else:
+        log_message("Expecting: dpn_host, dpn_token")
+        exit(1)
+    if  "dpn_token" in os.environ:
+        dpn_token = os.environ['dpn_token']
+    else:
+        log_message("Expecting: dpn_host, dpn_token")
+        exit(1)
+    return dpn_host, dpn_token

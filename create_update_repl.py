@@ -13,12 +13,15 @@ import os
 try:
     dpn_host = os.environ['dpn_host']
 #    log_message("Host: "+os.environ['dpn_host'])
+    dpn_token = os.environ['dpn_token']
+#    log_message("Token: "+os.environ['dpn_token'])
 except (ValueError, IndexError):
     log_message("expected dpn_host environment variable")
     exit(1)
 
 #log_message("DPN Host: "+dpn_host)
-dpn_headers={'Content-Type': 'application/json','Accept': 'application/json', 'Authorization': 'Token token=dpn_token'}
+token_string="Token token="+dpn_token
+dpn_headers={'Content-Type': 'application/json','Accept': 'application/json', 'Authorization': token_string}
 
 # Read synchronization record from stdin
 input_record=sys.stdin.read().replace('\n', '')
@@ -30,11 +33,11 @@ sync_record=json.loads(input_record)
 # Querystring to drive retrieval from Target
 dpn_api_endpoint="/api-v2/replicate/"
 dpn_querystring=dpn_api_endpoint+sync_record['replication_id']
-#log_message("retrieving " + dpn_querystring)
+log_message("retrieving " + dpn_querystring)
 
 # retrieve the Target record for comparison, update, or creation
 target_response = requests.get(dpn_host+dpn_querystring, headers=dpn_headers)
-#log_message("retrieval status: "+str(target_response.status_code))
+log_message("retrieval status: "+str(target_response.status_code))
 
 if target_response.status_code == 404:
     # Target record does not exist
@@ -53,5 +56,6 @@ else:
             if update_response.status_code != 200:
                 log_message("Update failed " + str(update_response.status_code))
                 exit(1)
+    else:
+	log_message("Retrieval failed " + str(target_response.status_code)+" repl: "+sync_record['replication_id'])
 exit(0)
-

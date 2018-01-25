@@ -33,17 +33,17 @@ sync_record=json.loads(input_record)
 # Querystring to drive retrieval from Target
 dpn_api_endpoint="/api-v2/replicate/"
 dpn_querystring=dpn_api_endpoint+sync_record['replication_id']
-log_message("retrieving " + dpn_querystring)
+#log_message("retrieving " + dpn_querystring)
 
 # retrieve the Target record for comparison, update, or creation
 target_response = requests.get(dpn_host+dpn_querystring, headers=dpn_headers)
-log_message("retrieval status: "+str(target_response.status_code))
+#log_message("retrieval status: "+str(target_response.status_code))
 
 if target_response.status_code == 404:
     # Target record does not exist
     log_message("Creating record "+sync_record['replication_id'])
     create_response=requests.post(dpn_host+dpn_api_endpoint, headers=dpn_headers, data=input_record)
-    if create_response.status_code != 201:
+    if create_response.status_code is not 201:
         log_message("Create failed " + str(create_response.status_code))
         exit(1)
 else:

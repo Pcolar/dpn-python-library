@@ -53,7 +53,7 @@ else:
         if sync_record['updated_at'] > target_record['updated_at']:
             log_message("updating repl record "+sync_record['replication_id'])
             update_response=requests.put(dpn_host+dpn_querystring, headers=dpn_headers, data=input_record)
-            if update_response.status_code != 200:
+            if update_response.status_code is not 200:
                 log_message("Update failed " + str(update_response.status_code))
                 exit(1)
     else:

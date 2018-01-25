@@ -41,7 +41,7 @@ if target_response.status_code == 404:
     # Target record does not exist
     log_message("Creating record "+sync_record['member_id'])
     create_response=requests.post(dpn_host+dpn_api_endpoint, headers=dpn_headers, data=input_record)
-    if create_response.status_code != 201:
+    if create_response.status_code is not 201:
         log_message("Create failed " + str(create_response.status_code))
         exit(1)
 else:
@@ -54,5 +54,7 @@ else:
             if update_response.status_code != 200:
                 log_message("Update failed " + str(update_response.status_code))
                 exit(1)
+    else:
+        log_message("Retrieval failed " + str(target_response.status_code)+" repl: "+sync_record['member_id'])
 exit(0)
 

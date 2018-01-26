@@ -1,5 +1,5 @@
 #!/usr/bin/python
-""" Synchronize DPN DIgest Records """
+""" Synchronize DPN fixity Records """
 
 from dpn_python_library import *
 import json
@@ -21,11 +21,11 @@ if len(input_record) == 0:
 sync_record=json.loads(input_record)
 
 # Querystring to drive retrieval from Target
-dpn_api_endpoint="/api-v2/bag/"
-dpn_querystring=dpn_api_endpoint+sync_record['bag']+"/digest"
+dpn_api_endpoint="/api-v2/fixity_check"
+dpn_querystring=dpn_api_endpoint
 # log_message("Querystring " + dpn_querystring)
 
-# Digests are immutable once created
+# Fixity records are immutable once created
 # We use a post to attempt creation, if it fails
 #  409 - Duplicate - OK
 #  201 - Created
@@ -33,12 +33,12 @@ dpn_querystring=dpn_api_endpoint+sync_record['bag']+"/digest"
 
 create_response=requests.post(dpn_host+dpn_querystring, headers=dpn_headers, data=input_record)
 if create_response.status_code == 201:
-    log_message("Created Digest record "+sync_record['bag'])
+    log_message("Created Fixity record "+sync_record['bag'])
 else:
     if create_response.status_code == 409:
-#     	log_message("Duplicate Digest record " + str(create_response.status_code)+" Bag UUID: "+ str(sync_record['bag']))
+#     	log_message("Duplicate Fixity record " + str(create_response.status_code)+" Bag UUID: "+ str(sync_record['bag']))
 	pass
     else:
-        log_message("Digest record create failed " + str(create_response.status_code))
+        log_message("Fixity record create failed " + str(sync_record['fixity_check_id']) + " Status: " + str(create_response.status_code))
         exit(1)
 exit(0)

@@ -4,7 +4,6 @@
 from app.dpn_python_library import *
 import requests
 import sys
-import os
 
 def get_dpn_api(url, token, endpoint_string):
     """ Call service for dpn API  """
@@ -23,23 +22,14 @@ def get_dpn_api(url, token, endpoint_string):
     return response.status_code
 
 # Retrieve environment variables
-if  "dpn_host" in os.environ:
-    dpn_host = os.environ['dpn_host']
-else:
-    log_message("Expecting: dpn_host")
-    exit(1)
-if  "dpn_token" in os.environ:
-    dpn_token = os.environ['dpn_token']
-else:
-    log_message("Expecting: dpn_token")
-    exit(1)
-#log_message("DPN Host: "+dpn_host)
-#log_message("DPN Headers: "+json.dumps(dpn_headers))
+dpn_host, dpn_token = load_environment()
+# log_message("DPN Host: "+dpn_host+" DPN Token: "+dpn_token)
+# log_message("DPN Headers: "+json.dumps(dpn_headers))
 
 # Read content from stdin
 dpn_querystring=sys.stdin.read().replace('\n', '')
-# log_message("length of querystring input " + str(len(dpn_querystring)))
 if len(dpn_querystring) is 0:
+    log_message("length of querystring: " + str(len(dpn_querystring)))
     exit(1)
 if get_dpn_api(dpn_host, dpn_token, dpn_querystring) is 200:
     exit(0)

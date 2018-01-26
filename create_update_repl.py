@@ -1,27 +1,17 @@
 #!/usr/bin/python
 """ Synchronize DPN Replication Records """
 
-from dpn_python_library import *
+from app.dpn_python_library import *
 import json
 import requests
 import sys
-import os
 
-# read content from environment variables
-# expecting Host
-#
-try:
-    dpn_host = os.environ['dpn_host']
-#    log_message("Host: "+os.environ['dpn_host'])
-    dpn_token = os.environ['dpn_token']
-#    log_message("Token: "+os.environ['dpn_token'])
-except (ValueError, IndexError):
-    log_message("expected dpn_host environment variable")
-    exit(1)
-
-#log_message("DPN Host: "+dpn_host)
+# Retrieve environment variables
+dpn_host, dpn_token = load_environment()
 token_string="Token token="+dpn_token
 dpn_headers={'Content-Type': 'application/json','Accept': 'application/json', 'Authorization': token_string}
+# log_message("DPN Host: "+dpn_host+" DPN Token: "+dpn_token)
+# log_message("DPN Headers: "+json.dumps(dpn_headers))
 
 # Read synchronization record from stdin
 input_record=sys.stdin.read().replace('\n', '')

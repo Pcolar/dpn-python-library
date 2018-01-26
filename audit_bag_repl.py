@@ -1,12 +1,13 @@
 #!/usr/bin/python
 """ Validate # of replications meets policy """
 
-from dpn_python_library import *
+from app.dpn_python_library import *
 import json
 import sys
 
 #  Default replication policy
 replication_copies=3
+
 out_record={}
 # Read content from stdin
 input_record=sys.stdin.read().replace('\n', '')

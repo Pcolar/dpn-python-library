@@ -1,24 +1,15 @@
 #!/usr/bin/python
-""" Execution shell for DPN API get calls """
+""" Given a json bag record, create or update in the target system """
 
-from dpn_python_library import *
+from app.dpn_python_library import *
 import json
 import requests
 import sys
-import os
 
-if  "dpn_host" in os.environ:
-    dpn_host = os.environ['dpn_host']
-else:
-    log_message("Expecting: dpn_host, dpn_token")
-    exit(1)
-if  "dpn_token" in os.environ:
-    token = os.environ['dpn_token']
-else:
-    log_message("Expecting: dpn_host, dpn_token")
-    exit(1)
+# Retrieve environment variables
+dpn_host, dpn_token = load_environment()
 dpn_headers={'Content-Type': 'application/json','Accept': 'application/json'}
-dpn_headers['Authorization']="Token token="+token
+dpn_headers['Authorization']="Token token="+dpn_token
 #log_message("DPN Host: "+dpn_host)
 #log_message("DPN Headers: "+json.dumps(dpn_headers))
 
@@ -53,11 +44,10 @@ if response.status_code is 200:
 #        else:
 #            log_message("records match")
 else:
-    log_message("Status: " + str(response.status_code)+ "; uuid: " + sync_record['uuid'])
+    log_message("Creating record - status: " + str(response.status_code)+ "; uuid: " + str(sync_record['uuid']))
 #    if response.status_code is 404:
-    log_message("Creating record")
     update_response=requests.post(dpn_host+"/api-v2/bag", headers=dpn_headers, data=input_record)
     if update_response.status_code is not 201:
-            log_message("Create failed: " + str(update_response.status_code))
+            log_message("Create failed: " + str(update_response.status_code) + "UUID: " + str(sync_record['uuid']))
             exit(1)
 exit(0)

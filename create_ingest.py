@@ -1,5 +1,5 @@
 #!/usr/bin/python
-""" Synchronize DPN fixity Records """
+""" Synchronize DPN Ingest Records """
 
 from app.dpn_python_library import *
 import json
@@ -21,7 +21,7 @@ if len(input_record) == 0:
 sync_record=json.loads(input_record)
 
 # Querystring to drive retrieval from Target
-dpn_api_endpoint="/api-v2/fixity_check"
+dpn_api_endpoint="/api-v2/ingest"
 dpn_querystring=dpn_api_endpoint
 # log_message("Querystring " + dpn_querystring)
 
@@ -33,12 +33,12 @@ dpn_querystring=dpn_api_endpoint
 
 create_response=requests.post(dpn_host+dpn_querystring, headers=dpn_headers, data=input_record)
 if create_response.status_code == 201:
-    log_message("Created Fixity record "+sync_record['bag'])
+    log_message("Created Ingest record for bag: "+sync_record['bag'])
 else:
     if create_response.status_code == 409:
-#     	log_message("Duplicate Fixity record " + str(create_response.status_code)+" Bag UUID: "+ str(sync_record['bag']))
+#     	log_message("Duplicate Ingest record " + str(create_response.status_code)+" Bag UUID: "+ str(sync_record['bag']))
 	pass
     else:
-        log_message("Fixity record create failed " + str(sync_record['fixity_check_id']) + " Status: " + str(create_response.status_code))
+        log_message("Ingest record create failed " + str(sync_record['ingest_id']) + " Status: " + str(create_response.status_code))
         exit(1)
 exit(0)

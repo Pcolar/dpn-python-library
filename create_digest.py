@@ -1,7 +1,7 @@
 #!/usr/bin/python
 """ Synchronize DPN DIgest Records """
 
-from dpn_python_library import *
+from app.dpn_python_library import *
 import json
 import requests
 import sys

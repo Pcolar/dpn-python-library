@@ -1,25 +1,16 @@
 #!/usr/bin/python
 
+from app.dpn_python_library import *
 import requests
 import sys
-import os
-from dpn_python_library import *
 
 # Creates a bag entry in the DPN architecture via the DPN API
 ###  Requires a json file with the bag data
 
-if  "dpn_host" in os.environ:
-    dpn_host = os.environ['dpn_host']
-else:
-    log_message("Expecting: dpn_host, dpn_token")
-    exit(1)
-if  "dpn_token" in os.environ:
-    token = os.environ['dpn_token']
-else:
-    log_message("Expecting: dpn_host, dpn_token")
-    exit(1)
+# Retrieve environment variables
+dpn_host, dpn_token = load_environment()
 dpn_headers={'Content-Type': 'application/json','Accept': 'application/json'}
-dpn_headers['Authorization']="Token token="+token
+dpn_headers['Authorization']="Token token="+dpn_token
 #log_message("DPN Host: "+dpn_host)
 #log_message("DPN Headers: "+json.dumps(dpn_headers))
 
@@ -28,7 +19,8 @@ endpoint = {'bag': '/api-v2/bag', 'member': '/api-v2/member', 'node': '/api-v2/n
 # Read content from stdin
 dpn_bag=sys.stdin.read().replace('\n', '')
 # log_message("length of JSON input " + str(len(dpn_bag)))
-if len(dpn_bag) is 0:
+if len(dpn_bag) == 0:
+    log_message("Bag record required as input")
     exit(1)
 
 #log_message(dpn_headers)

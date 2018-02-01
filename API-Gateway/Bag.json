@@ -1,5 +1,5 @@
 {
-"required" : [ "uuid", "local_id", "size", "first_version_uuid", "ingest_node", "admin_node", "member", "version", "bag_type", "interpretive", "rights", "replication_nodes" ],
+"required" : [ "uuid", "local_id", "size", "first_version_uuid", "ingest_node", "admin_node", "member", "version", "bag_type", "interpretive", "rights", "replicating_nodes" ],
   "type" : "object",
   "properties" : {
     "uuid" : {
@@ -58,7 +58,7 @@
         "format" : "uuid"
       }
     },
-    "replication_nodes" : {
+    "replicating_nodes" : {
       "type" : "array",
       "description" : "Empty array or array of namespaces of this bag's replicating nodes.",
       "items" : {

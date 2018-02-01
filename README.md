@@ -3,9 +3,6 @@
 
 ## Python code for DPN client functions
 
-### NiFi 
-This directory contains template files extracted from production NiFi instances
-
 ### app
 Contains python libraries
 

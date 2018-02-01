@@ -498,11 +498,11 @@ Add bag record to registry</comments>
                   </entry>
                   <entry>
                     <key>dpn_host</key>
-                    <value>http://ec2-34-225-251-34.compute-1.amazonaws.com</value>
+                    <value></value>
                   </entry>
                   <entry>
                     <key>dpn_token</key>
-                    <value>f4fac0e2b7e1401788d2b57f488134ad1</value>
+                    <value></value>
                   </entry>
                 </properties>
                 <runDurationMillis>0</runDurationMillis>

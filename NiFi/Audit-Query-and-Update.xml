@@ -610,11 +610,11 @@ Repl records that are unfulfilled and not cancelled are flagged in the log</comm
                   </entry>
                   <entry>
                     <key>dpn_host</key>
-                    <value>http://ec2-184-73-36-106.compute-1.amazonaws.com</value>
+                    <value></value>
                   </entry>
                   <entry>
                     <key>dpn_token</key>
-                    <value>dpn_token</value>
+                    <value></value>
                   </entry>
                 </properties>
                 <runDurationMillis>0</runDurationMillis>
@@ -1365,11 +1365,11 @@ Repl records that are unfulfilled and not cancelled are flagged in the log</comm
                   </entry>
                   <entry>
                     <key>dpn_host</key>
-                    <value>http://ec2-184-73-36-106.compute-1.amazonaws.com</value>
+                    <value></value>
                   </entry>
                   <entry>
                     <key>dpn_token</key>
-                    <value>dpn_token</value>
+                    <value></value>
                   </entry>
                 </properties>
                 <runDurationMillis>0</runDurationMillis>
@@ -1978,11 +1978,11 @@ written to the log</comments>
                   </entry>
                   <entry>
                     <key>dpn_host</key>
-                    <value>http://ec2-34-225-251-34.compute-1.amazonaws.com</value>
+                    <value></value>
                   </entry>
                   <entry>
                     <key>dpn_token</key>
-                    <value>dpn_token</value>
+                    <value></value>
                   </entry>
                 </properties>
                 <runDurationMillis>0</runDurationMillis>
@@ -2760,11 +2760,11 @@ written to the log</comments>
                   </entry>
                   <entry>
                     <key>dpn_host</key>
-                    <value>http://ec2-34-225-251-34.compute-1.amazonaws.com</value>
+                    <value></value>
                   </entry>
                   <entry>
                     <key>dpn_token</key>
-                    <value>dpn_token</value>
+                    <value></value>
                   </entry>
                 </properties>
                 <runDurationMillis>0</runDurationMillis>
@@ -3714,11 +3714,11 @@ Update Bag records "replicating_nodes" with completed replications
                   </entry>
                   <entry>
                     <key>dpn_host</key>
-                    <value>http://ec2-34-225-251-34.compute-1.amazonaws.com</value>
+                    <value></value>
                   </entry>
                   <entry>
                     <key>dpn_token</key>
-                    <value>f4fac0e2b7e1401788d2b57f488134ad1</value>
+                    <value></value>
                   </entry>
                 </properties>
                 <runDurationMillis>0</runDurationMillis>
@@ -3844,11 +3844,11 @@ Update Bag records "replicating_nodes" with completed replications
                   </entry>
                   <entry>
                     <key>dpn_host</key>
-                    <value>http://ec2-34-225-251-34.compute-1.amazonaws.com</value>
+                    <value></value>
                   </entry>
                   <entry>
                     <key>dpn_token</key>
-                    <value>f4fac0e2b7e1401788d2b57f488134ad1</value>
+                    <value></value>
                   </entry>
                 </properties>
                 <runDurationMillis>0</runDurationMillis>
@@ -4223,11 +4223,11 @@ Update Bag records "replicating_nodes" with completed replications
                   </entry>
                   <entry>
                     <key>dpn_host</key>
-                    <value>http://ec2-34-225-251-34.compute-1.amazonaws.com</value>
+                    <value></value>
                   </entry>
                   <entry>
                     <key>dpn_token</key>
-                    <value>f4fac0e2b7e1401788d2b57f488134ad1</value>
+                    <value></value>
                   </entry>
                 </properties>
                 <runDurationMillis>0</runDurationMillis>
@@ -4352,11 +4352,11 @@ Update Bag records "replicating_nodes" with completed replications
                   </entry>
                   <entry>
                     <key>dpn_host</key>
-                    <value>http://ec2-34-225-251-34.compute-1.amazonaws.com</value>
+                    <value></value>
                   </entry>
                   <entry>
                     <key>dpn_token</key>
-                    <value>f4fac0e2b7e1401788d2b57f488134ad1</value>
+                    <value></value>
                   </entry>
                 </properties>
                 <runDurationMillis>0</runDurationMillis>

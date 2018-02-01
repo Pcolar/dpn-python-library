@@ -20,8 +20,17 @@ Validates number  of replications meets policy
 #### create-dict.py
 Creates a dictionary from file input
 
+#### create-digest.py
+Creates a digest record, via the API, from file input
+
 #### create_dpn_bag.py, create_dpn_bag_stdin.py, create_update_bag.py
 Creates (or updates) a bag entry via the DPN API
+
+#### create-fixity.py
+Creates a fixity record, via the API, from file input
+
+#### create-ingest.py
+Creates an ingest record, via the API, from file input
 
 #### create_update_member.py
 Creates (or updates) a member record via the DPN API
@@ -37,5 +46,3 @@ Parse the UCSD DCV 'conan' report into CSV
 
 #### update_bag_repl_nodes.py
 Given a satisfied Repl record at STDIN, Update the corresponding bag record
-
-

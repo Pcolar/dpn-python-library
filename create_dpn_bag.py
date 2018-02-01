@@ -5,23 +5,14 @@ __license__ = "BSD Version 3 License"
 
 import requests
 import sys
-import os
 from dpn_python_library import *
 
 ###  Requires a json file with the bag data
 
-if  "dpn_host" in os.environ:
-    dpn_host = os.environ['dpn_host']
-else:
-    log_message("Expecting: dpn_host, dpn_token")
-    exit(1)
-if  "dpn_token" in os.environ:
-    token = os.environ['dpn_token']
-else:
-    log_message("Expecting: dpn_host, dpn_token")
-    exit(1)
+# Retrieve environment variables
+dpn_host, dpn_token = load_environment()
 dpn_headers={'Content-Type': 'application/json','Accept': 'application/json'}
-dpn_headers['Authorization']="Token token="+token
+dpn_headers['Authorization']="Token token="+dpn_token
 #log_message("DPN Host: "+dpn_host)
 #log_message("DPN Headers: "+json.dumps(dpn_headers))
 

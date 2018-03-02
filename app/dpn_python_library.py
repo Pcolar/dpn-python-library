@@ -25,6 +25,12 @@ def log_message(message):
     """print out  in log message format"""
     print "%s:  %s" % (datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S"), message)
 
+def log_json_message(log_message):
+    """print out  in json tagged log message format"""
+    log_message['timestamp'] = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+    print json.dumps(log_message)
+    log_message={}
+
 def  create_csv(json_file):
     """create a csv file from the json data"""
     output_filename = json_file[:json_file.find('json')] + "csv"

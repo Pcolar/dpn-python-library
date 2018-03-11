@@ -2,8 +2,6 @@
 """ Copy a string from STDIN to an SQS queue """
 
 from app.dpn_python_library import *
-import json
-import requests
 import sys
 
 log_messages={}

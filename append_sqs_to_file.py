@@ -18,10 +18,24 @@ def load_environment_variables():
     else:
         log_message("Expecting: queue, outfile")
         exit(1)
-    return  queue_name, output_file
+    if  "delete_sqs" in os.environ:
+        delete_sqs = true
+    else:
+        delete_sqs = false
+    if  "json_out" in os.environ:
+        json_out = true
+    else:
+        json_out = false
+    return  queue_name, output_file, delete_sqs, json_out
 
+true=1
+false=0
+message_count=0
+queue_name, output_file, delete_sqs, json_out = load_environment_variables()
 
-queue_name, output_file = load_environment_variables()
+if queue_name == ""  or output_file == "":
+    log_message("expecting queue name and out filename")
+    exit(1)
 
 # Get the service resource
 sqs = boto3.resource('sqs')
@@ -30,15 +44,27 @@ queue = sqs.get_queue_by_name(QueueName=queue_name)
 
 # Open the output file in write mode
 file_handle = open(output_file, "a+")
-
+if json_out is true:
+    file_handle.write("{ \"results\": [\n")
 # Read and process the queue entries
-message_received = 1
-while message_received > 0:
+message_received = true
+while message_received is true:
     messages = queue.receive_messages(WaitTimeSeconds=20, MaxNumberOfMessages=1)
     if len(messages) > 0:
         for message in messages:
-            file_handle.write(message.body+'\n')
-            message.delete()
+            if json_out is true:
+                file_handle.write(message.body+',\n')
+            else:
+                file_handle.write(message.body+'\n')
+	    message_count +=1
+            if delete_sqs is true:
+                message.delete()
+    else:
+	message_received = false
 
+if json_out is true:
+    file_handle.write("] }")
+log_messages={'records': message_count, 'queue': queue_name}
+log_json_message
 file_handle.close()
 exit(0)

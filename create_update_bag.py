@@ -18,13 +18,13 @@ dpn_headers['Authorization']="Token token="+dpn_token
 try:
     input_record=sys.stdin.read().replace('\n', '')
     # log_message("length of JSON input " + str(len(input_record)))
-    if len(input_record) is 0:
-        log_message('"message": "Record required as input"')
+    if len(input_record) == 0:
+        log_message('"message": "Bag Record required as input"')
         exit(1)
     sync_record=json.loads(input_record)
 
 except (ValueError, IndexError):
-    log_message('"message": "JSON formatted record required as input"')
+    log_message('"message": "JSON formatted Bag record required as input"')
     exit(1)
 
 dpn_querystring="/api-v2/bag/"+sync_record['uuid']

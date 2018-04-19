@@ -3,12 +3,34 @@
 ## Script for syncing DPN records on a weekly basis to an s3 bucket
 ## Dependencies: awscli (pip install awscli --upgrade --user && aws configure)
 
-JSON_DIR="/tmp/dpn"
-S3_BUCKET="dpn-sync"
+
+# Check for environment variables
+if [[ -z ${API_TOKEN} ]];
+then
+    echo "API_TOKEN required"
+    exit -1
+fi
+
+if [[ -z ${REST_SERVER} ]];
+then
+    echo "REST_SERVER required"
+    exit -1
+fi
+
+if [[ -z ${DEST_DIRECTORY} ]];
+then
+    echo "DEST_DIRECTORY not found, reverting to dpn"
+    DEST_DIRECTORY="dpn"
+fi
+
+# set up environment
+
+JSON_DIR="/tmp/dpn/${DEST_DIRECTORY}"
+# S3_BUCKET="dpn-sync"
 # API_TOKEN="<insert token here>"
 
-DATE_AFTER=`date --iso-8601 -d "-1 week"`
-DATE_BEFORE=`date --iso-8601`
+DATE_AFTER=$(date --iso-8601 -d "-1 week")
+DATE_BEFORE=$(date --iso-8601)
 DATE_PARAMS="after=${DATE_AFTER}&before=${DATE_BEFORE}"
 PAGE_PARAMS="page=1&page_size=1"
 
@@ -35,19 +57,6 @@ get_json() {
   curl --insecure -s -H "Authorization: Token token=${API_TOKEN}" "${URL}" -o ${2}
 }
 
-# Check for environment variables
-if [[ -z ${API_TOKEN} ]];
-then
-    echo "API_TOKEN required"
-    exit -1
-fi
-
-if [[ -z ${REST_SERVER} ]];
-then
-    echo "REST_SERVER required"
-    exit -1
-fi
-
 mkdir -p ${JSON_DIR}
 get_json $BAG_API "${JSON_DIR}/bags_${DATE_BEFORE}.json"
 get_json $DIGEST_API "${JSON_DIR}/digest_${DATE_BEFORE}.json"
@@ -55,4 +64,4 @@ get_json $INGEST_API "${JSON_DIR}/ingest_${DATE_BEFORE}.json"
 get_json $FIXITY_API "${JSON_DIR}/fixity_checks_${DATE_BEFORE}.json"
 get_json $REPLICATION_API "${JSON_DIR}/replications_${DATE_BEFORE}.json"
 
-# aws s3 cp --recursive ${JSON_DIR} "s3://${S3_BUCKET}/chronopolis-sync"
+# aws s3 cp --recursive ${JSON_DIR} "s3://${S3_BUCKET}/${DEST_DIRECTORY}"

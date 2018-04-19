@@ -34,9 +34,6 @@ if response.status_code is 200:
 #    log_message("uuid: "+sync_record['uuid']+"="+response_record['uuid']+"; updated: "+sync_record['updated_at']+"="+response_record['updated_at'])
 
     if sync_record['updated_at'] > response_record['updated_at']:
-        json_messages['message'] = "updating bag record"
-	json_messages['bag_uuid'] = sync_record['uuid']
-	log_json_message(json_messages)
         update_response=requests.put(dpn_host+dpn_querystring, headers=dpn_headers, data=input_record)
         if update_response.status_code is not 200:
 	    json_messages['message'] = "Update Bag Failed"
@@ -44,16 +41,17 @@ if response.status_code is 200:
             json_messages['bag_uuid'] = sync_record['uuid']
             log_json_message(json_messages)
             exit(1)
+	else:
+            json_messages['message'] = "updated bag record"
+    	    json_messages['bag_uuid'] = sync_record['uuid']
+	    log_json_message(json_messages)
+
 #    else:
 #        if response_record['updated_at'] > sync_record['updated_at']:
 #            log_message("local record is newer")
 #        else:
 #            log_message("records match")
 else:
-    json_messages['message'] = "creating bag record"
-    json_messages['bag_uuid'] = sync_record['uuid']
-    json_messages['return_code'] = str(response.status_code)
-    log_json_message(json_messages)
 #    if response.status_code is 404:
     update_response=requests.post(dpn_host+"/api-v2/bag", headers=dpn_headers, data=input_record)
     if update_response.status_code is not 201:
@@ -62,4 +60,10 @@ else:
 	    json_messages['return_code'] = str(update_response.status_code)
 	    log_json_message(json_messages)
             exit(1)
+    else:
+            json_messages['message'] = "created bag record"
+            json_messages['bag_uuid'] = sync_record['uuid']
+            json_messages['return_code'] = str(response.status_code)
+            log_json_message(json_messages)
+
 exit(0)

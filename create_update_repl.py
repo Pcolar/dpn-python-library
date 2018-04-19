@@ -32,9 +32,6 @@ target_response = requests.get(dpn_host+dpn_querystring, headers=dpn_headers)
 
 if target_response.status_code == 404:
     # Target record does not exist
-    json_messages['message'] = "Creating Repl record"
-    json_messages['repl_uuid'] = sync_record['replication_id']
-    log_json_message(json_messages)
     create_response=requests.post(dpn_host+dpn_api_endpoint, headers=dpn_headers, data=input_record)
     if create_response.status_code is not 201:
         json_messages['message'] = "Create Repl record Failed"
@@ -42,14 +39,17 @@ if target_response.status_code == 404:
         json_messages['return_code'] = str(create_response.status_code)
         log_json_message(json_messages)
         exit(1)
+    else:
+        json_messages['message'] = "Created Repl record"
+        json_messages['repl_uuid'] = sync_record['replication_id']
+        json_messages['return_code'] = str(create_response.status_code)
+        log_json_message(json_messages)
+
 else:
     if target_response.status_code == 200:
         #successful retrieval
         target_record=json.loads(target_response.text)
         if sync_record['updated_at'] > target_record['updated_at']:
-            json_messages['message'] = "Updating Repl record"
-            json_messages['repl_uuid'] = sync_record['replication_id']
-            log_json_message(json_messages)
             update_response=requests.put(dpn_host+dpn_querystring, headers=dpn_headers, data=input_record)
             if update_response.status_code is not 200:
                 json_messages['message'] = "Update Repl record Failed"
@@ -57,8 +57,13 @@ else:
                 json_messages['return_code'] = str(update_response.status_code)
                 log_json_message(json_messages)
                 exit(1)
+	    else:
+                json_messages['message'] = "Updated Repl record"
+                json_messages['repl_uuid'] = sync_record['replication_id']
+                json_messages['return_code'] = str(update_response.status_code)
+                log_json_message(json_messages)
     else:
-	log_message("Retrieval failed " + str(target_response.status_code)+" repl: "+sync_record['replication_id'])
+	# log_message("Retrieval failed " + str(target_response.status_code)+" repl: "+sync_record['replication_id'])
         json_messages['message'] = "Retrieve Repl record Failed"
         json_messages['repl_uuid'] = sync_record['replication_id']
         json_messages['return_code'] = str(target_response.status_code)

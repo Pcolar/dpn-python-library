@@ -52,6 +52,11 @@ get_json() {
   URL="${1}&${PARAMS}"
   echo "------------------------"
   echo "${PAGE_SIZE} records found"
+  if [ ${PAGE_SIZE} -gt 100 ]
+  then
+      echo "${PAGE_SIZE}  is greater than 100, defaulting to 100 records"
+      PAGE_SIZE="100"
+  fi
   echo "Writing ${URL} to ${2}"
   echo "------------------------"
   curl --insecure -s -H "Authorization: Token token=${API_TOKEN}" "${URL}" -o ${2}

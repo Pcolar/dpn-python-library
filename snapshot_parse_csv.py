@@ -1,5 +1,5 @@
 #!/usr/bin/python
-""" Parse snapshot report """
+""" Parse the DCV conan snapshot report """
 
 from app.dpn_python_library import *
 import requests
@@ -14,10 +14,11 @@ def reset_headers(headers):
     headers['requested']=""
     headers['stored']=""
     headers['cancelled']=""
+    headers['date']=""
     return
 
 def print_record(headers):
-    print headers['snapshot']+","+headers['bag']+","+headers['repl']+","+headers['node']+","+headers['requested']+","+headers['stored']+","+headers['cancelled']
+    print headers['snapshot']+","+headers['bag']+","+headers['repl']+","+headers['node']+","+headers['requested']+","+headers['stored']+","+headers['cancelled']+","+headers['date']
     return
 
 def t_or_f(tf_string):
@@ -29,7 +30,7 @@ def t_or_f(tf_string):
 started=end=0
 headers={}
 reset_headers(headers)
-print "Snapshot,Bag,Replication ID,Node,Requested,Stored,Cancelled"
+print "Snapshot,Bag,Replication ID,Node,Requested,Stored,Cancelled,date"
 while (started == 0):
     # Read record from stdin until "start"
     input_record=sys.stdin.readline()
@@ -48,6 +49,8 @@ while (end == 0):
         continue
     if (headers['snapshot'] is ""):
         headers['snapshot'] = input_record.rstrip()
+        parse_snapshot= str(headers['snapshot']).split("_")
+        headers['date'] = parse_snapshot[3][0:10]
         continue
     if input_record.startswith("Bag"):
         string_list = input_record.split()

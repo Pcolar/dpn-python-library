@@ -39,5 +39,6 @@ Thumbs.db
 
 # Misc local files #
 ####################
-test*
+temp*.py
+temp*.sh
 

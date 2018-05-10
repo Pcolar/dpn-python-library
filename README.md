@@ -22,6 +22,9 @@ Copies the contents of a queue to a local file
 #### audit_bag_repl.py, audit_repl.py
 Validates number  of replications meets policy
 
+#### audit_match_repl.py
+Validate replication records match between nodes
+
 #### BagCreateUpdate.py
 Encapsulates DPN API GET and POST calls to update a registry bag record via the DPN API
 

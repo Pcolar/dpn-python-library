@@ -65,6 +65,6 @@ while message_received is true:
 if json_out is true:
     file_handle.write("] }")
 log_messages={'records': message_count, 'queue': queue_name}
-log_json_message
+log_json_message(log_messages)
 file_handle.close()
 exit(0)

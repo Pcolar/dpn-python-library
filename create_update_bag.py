@@ -40,7 +40,6 @@ if response.status_code is 200:
             json_messages['return_code'] = str(update_response.status_code)
             json_messages['bag_uuid'] = sync_record['uuid']
             log_json_message(json_messages)
-            exit(1)
 	else:
             json_messages['message'] = "updated bag record"
     	    json_messages['bag_uuid'] = sync_record['uuid']
@@ -59,7 +58,6 @@ else:
 	    json_messages['bag_uuid'] = sync_record['uuid']
 	    json_messages['return_code'] = str(update_response.status_code)
 	    log_json_message(json_messages)
-            exit(1)
     else:
             json_messages['message'] = "created bag record"
             json_messages['bag_uuid'] = sync_record['uuid']

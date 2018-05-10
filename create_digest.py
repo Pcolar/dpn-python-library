@@ -33,12 +33,11 @@ dpn_querystring=dpn_api_endpoint+sync_record['bag']+"/digest"
 
 create_response=requests.post(dpn_host+dpn_querystring, headers=dpn_headers, data=input_record)
 if create_response.status_code == 201:
-    log_message("Created Digest record "+sync_record['bag'])
+    log_message("Created Digest record "+ str(sync_record['bag']))
 else:
     if create_response.status_code == 409:
 #     	log_message("Duplicate Digest record " + str(create_response.status_code)+" Bag UUID: "+ str(sync_record['bag']))
 	pass
     else:
-        log_message("Digest record create failed " + str(create_response.status_code))
-        exit(1)
+        log_message("Digest record create failed " + str(sync_record['bag']) + " status: " + str(create_response.status_code))
 exit(0)

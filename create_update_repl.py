@@ -38,7 +38,6 @@ if target_response.status_code == 404:
         json_messages['repl_uuid'] = sync_record['replication_id']
         json_messages['return_code'] = str(create_response.status_code)
         log_json_message(json_messages)
-        exit(1)
     else:
         json_messages['message'] = "Created Repl record"
         json_messages['repl_uuid'] = sync_record['replication_id']
@@ -58,7 +57,6 @@ else:
                 json_messages['return_code'] = str(update_response.status_code)
                 json_messages['errors'] = error_response['errors']
                 log_json_message(json_messages)
-                exit(1)
 	    else:
                 json_messages['message'] = "Updated Repl record"
                 json_messages['repl_uuid'] = sync_record['replication_id']

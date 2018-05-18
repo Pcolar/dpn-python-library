@@ -39,7 +39,7 @@ if len(dpn_querystring) is 0:
 else:
     return_status=get_dpn_api(dpn_host, dpn_token, dpn_querystring)
     if return_status != 200:
-        json_messages['message'] = "Retrieval failed" 
+        json_messages['message'] = "Retrieval failed"
         json_messages['return_code'] = return_status
         json_messages['querystring'] = dpn_querystring
         log_json_message(json_messages)

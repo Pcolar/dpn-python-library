@@ -24,9 +24,10 @@ try:
     sync_record=json.loads(input_record)
     dpn_querystring="/api-v2/bag/"+sync_record['uuid']
 
-except (ValueError, IndexError):
-    log_message('"message": "JSON formatted Bag record required as input"')
-    exit(1)
+except (ValueError, IndexError, KeyError):
+    json_messages['message'] = "JSON formatted Bag record required as input"
+    log_json_message(json_messages)
+    exit(0)
 
 response = requests.get(dpn_host+dpn_querystring, headers=dpn_headers)
 if response.status_code is 200:

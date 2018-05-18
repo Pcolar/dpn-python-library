@@ -21,18 +21,26 @@ def get_dpn_api(url, token, endpoint_string):
         print(response.text)
     return response.status_code
 
+json_messages={}
 # Retrieve environment variables
-dpn_host, dpn_token = load_environment()
+environment_params={}
+load_from_environment(environment_params, "dpn_host", "dpn_token")
+dpn_host=environment_params['dpn_host']
+dpn_token=environment_params['dpn_token']
 # log_message("DPN Host: "+dpn_host+" DPN Token: "+dpn_token)
 # log_message("DPN Headers: "+json.dumps(dpn_headers))
 
 # Read content from stdin
 dpn_querystring=sys.stdin.read().replace('\n', '')
 if len(dpn_querystring) is 0:
-    log_message("length of querystring: " + str(len(dpn_querystring)))
-    exit(1)
-if get_dpn_api(dpn_host, dpn_token, dpn_querystring) is 200:
-    exit(0)
-# fallthrough
-exit(1)
-
+    json_messages['message'] = "Invalid Querystring"
+    json_messages['querystring'] = dpn_querystring
+    log_json_message(json_messages)
+else:
+    return_status=get_dpn_api(dpn_host, dpn_token, dpn_querystring)
+    if return_status != 200:
+        json_messages['message'] = "Retrieval failed" 
+        json_messages['return_code'] = return_status
+        json_messages['querystring'] = dpn_querystring
+        log_json_message(json_messages)
+exit(0)

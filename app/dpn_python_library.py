@@ -107,3 +107,16 @@ def load_environment():
         log_message("Expecting: dpn_host, dpn_token")
         exit(1)
     return dpn_host, dpn_token
+
+def load_from_environment(return_args, *argv):
+# read content from environment variables
+# environment arg names are passed as strings and returned in a dictionary.
+# not found is returned as a null string
+
+    for arg in argv:
+       if  arg in os.environ:
+          return_args[arg] = os.environ[arg]
+#         print arg + " value is: " + return_args[arg]
+       else:
+          return_args[arg] = None
+    return(0)

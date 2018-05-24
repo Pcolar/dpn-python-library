@@ -40,5 +40,4 @@ else:
 	pass
     else:
         log_message("Ingest record create failed " + str(sync_record['ingest_id']) + " Status: " + str(create_response.status_code))
-        exit(1)
 exit(0)

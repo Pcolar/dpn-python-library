@@ -26,7 +26,7 @@ try:
 
 except (ValueError, IndexError, KeyError):
     json_messages['message'] = "JSON formatted Bag record required as input"
-    json_messages['input'] = input_record 
+    json_messages['input'] = input_record
     log_json_message(json_messages)
     exit(0)
 

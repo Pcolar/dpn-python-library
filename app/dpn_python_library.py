@@ -31,6 +31,14 @@ def log_json_message(log_message):
     print json.dumps(log_message)
     log_message={}
 
+def  loggily_json_message(log_message):
+    """Push message to Loggily in json tagged log message format"""
+    log_message['timestamp'] = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+    payload=json.dumps(log_message)
+    response = requests.post("http://logs-01.loggly.com/inputs/5cadf10d-100f-4a85-90b3-e69cbe6fc8e1/tag/http/", data=payload)
+    #print response
+    log_message={}
+
 def  create_csv(json_file):
     """create a csv file from the json data"""
     output_filename = json_file[:json_file.find('json')] + "csv"

@@ -25,5 +25,6 @@ if (len(replication_list) != replication_copies):
     out_record['ingest_node']=sync_record['ingest_node']
     out_record['replicating_nodes']=sync_record['replicating_nodes']
     out_record['updated_at']=sync_record['updated_at']
-    print json.dumps(out_record)
+    loggily_json_message(out_record)
+    #print json.dumps(out_record)
 exit(0)
